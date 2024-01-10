@@ -11,31 +11,25 @@ import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
+
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.Subsystems.HSVRedDetection;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
-import org.openftc.easyopencv.OpenCvCamera;
 
 @Autonomous(name = "CloseBlueLeft")
 public class CloseBlueLeft extends LinearOpMode {
     Robot bot;
-    OpenCvCamera camera;
-    HSVRedDetection redDetection;
-    String webcamName;
 
-    public void runOpMode() {
-
+    public void runOpMode()
+    {
         bot = new Robot(hardwareMap, telemetry);
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         Pose2d start = new Pose2d(15, 61, Math.toRadians(90));
         drive.setPoseEstimate(start);
-        //initCam();
 
         TrajectorySequence everything = drive.trajectorySequenceBuilder(start)
                 .waitSeconds(1)
-
 
                 .addDisplacementMarker(() -> {
                     bot.setWristPosition(wristState.init);
@@ -50,11 +44,12 @@ public class CloseBlueLeft extends LinearOpMode {
                     bot.setWristState(wristState.outtaking);
                 })
                 .lineToConstantHeading(new Vector2d(20, 59.01))
+
                 .waitSeconds(.25)
+
                 .addDisplacementMarker( () -> {
                     bot.setArmPosition(armState.autoDrop, armExtensionState.extending);
                     bot.setArmState(armState.autoDrop);
-
                 })
 
                 .lineToConstantHeading(new Vector2d(20,42))
@@ -63,10 +58,12 @@ public class CloseBlueLeft extends LinearOpMode {
                     bot.setClawPosition(clawState.leftClose);
                     bot.setClawState(clawState.leftClose);
                 })
-                .waitSeconds(.75)
-                .lineToConstantHeading(new Vector2d(20,45))
-                .lineToLinearHeading(new Pose2d(52 ,45, Math.toRadians(180)))
 
+                .waitSeconds(.75)
+
+                .lineToConstantHeading(new Vector2d(20,45))
+
+                .lineToLinearHeading(new Pose2d(52 ,45, Math.toRadians(180)))
 
                 .addDisplacementMarker( () -> {
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
@@ -74,11 +71,14 @@ public class CloseBlueLeft extends LinearOpMode {
 
                     bot.outtakeSlide.setPosition(450);
                 })
+
                 .addDisplacementMarker(() -> {
                     bot.setClawPosition(clawState.rightClose);
                     bot.setClawState(clawState.rightClose);
                 })
+
                 .waitSeconds(.5)
+
                 .lineToConstantHeading(new Vector2d(43, 45))
 
                 .addDisplacementMarker( () -> {
@@ -88,6 +88,7 @@ public class CloseBlueLeft extends LinearOpMode {
                 })
 
                 .lineToConstantHeading(new Vector2d(43, 47))
+
                 .lineToLinearHeading(new Pose2d(49 ,58, Math.toRadians(270)))
 
                 .addDisplacementMarker( () -> {
@@ -96,15 +97,11 @@ public class CloseBlueLeft extends LinearOpMode {
                   bot.setWristPosition(wristState.intaking);
                 })
 
-
-
-
-
                 .build();
+
         waitForStart();
         if(isStopRequested()) return;
 
-        //     bot.intakeSlide.setPosition(50);
         bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
         bot.setOuttakeSlideState(outtakeSlidesState.STATION);
         bot.setArmState(armState.intaking);
@@ -114,9 +111,6 @@ public class CloseBlueLeft extends LinearOpMode {
         bot.setClawPosition(clawState.open);
         bot.setClawState(clawState.open);
 
-
         drive.followTrajectorySequence(everything);
-
-
     }
 }

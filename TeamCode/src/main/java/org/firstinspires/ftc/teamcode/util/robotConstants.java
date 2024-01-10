@@ -80,7 +80,7 @@ public class robotConstants
         public static double init = .76;
     }
 
-    public static class virtualFourBar
+    public static class arm
     {
         public static double intakingLeft = 0.01;
 

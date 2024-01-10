@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.OpModes.Autonomous.Detection.HSVBlueDetection;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
@@ -19,7 +20,7 @@ import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDriv
 @Autonomous(name = "longBlueObjectDetect", group = "Auto")
 public class longBlue extends LinearOpMode {
     OpenCvCamera camera;
-    HSVBlueDetection blueDetection;
+    org.firstinspires.ftc.teamcode.OpModes.Autonomous.Detection.HSVBlueDetection blueDetection;
     String webcamName;
     Robot bot;
 

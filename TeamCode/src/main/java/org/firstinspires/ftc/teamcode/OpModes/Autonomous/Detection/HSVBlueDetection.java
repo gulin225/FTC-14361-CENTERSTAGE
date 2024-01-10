@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes.Autonomous.autoExecutable;
+package org.firstinspires.ftc.teamcode.OpModes.Autonomous.Detection;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.opencv.core.Core;
