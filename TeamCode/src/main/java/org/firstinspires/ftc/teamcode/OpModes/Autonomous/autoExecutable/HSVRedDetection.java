@@ -28,17 +28,18 @@ public class HSVRedDetection extends OpenCvPipeline {
 
      */
     static final Rect MIDDLE_ROI = new Rect(
-            new Point(30, 135),
-            new Point(90, 175));
+            new Point(20, 135),
+            new Point(80, 175));
     static final Rect RIGHT_ROI = new Rect(
-            new Point(140, 135),
-            new Point(200, 175));
+            new Point(190, 145),
+            new Point(250, 185));
     static double PERCENT_COLOR_THRESHOLD = 0.18;
 
     public HSVRedDetection(Telemetry t) { telemetry = t; }
 
     @Override
     public Mat processFrame(Mat input) {
+
 
         // changes the frame captured by the camera from RGB to HSV
         Imgproc.cvtColor(input, mat, Imgproc.COLOR_RGB2HSV); // Imgproc.COLOR_RGB2HSV & Imgproc.COLOR_RGB2HSV_FULL are the same; FULL is the scale 0-360 & normal is 0-180
@@ -55,9 +56,10 @@ public class HSVRedDetection extends OpenCvPipeline {
         // *** don't forget to divide the values by 2 if you use Imgproc.COLOR_RBG2HSV
 
         // in this case, we using dark blue to light blue
-
-        Scalar lowHSV = new Scalar(175, 78, 78);
-        Scalar highHSV = new Scalar(179, 255, 255);
+        Scalar lowHSV = new Scalar(0, 128, 100);
+        Scalar highHSV = new Scalar(20, 255, 255);
+        // Scalar lowHSV = new Scalar(175, 78, 78);
+        //Scalar highHSV = new Scalar(179, 255, 255);
 
 
         // this shows us the stuff in our range (in this case blue)
