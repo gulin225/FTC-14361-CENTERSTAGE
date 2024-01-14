@@ -30,8 +30,8 @@ public class closeRed extends LinearOpMode {
         drive.setPoseEstimate(startPose);
         //left ------------------------------------------------------------------
         TrajectorySequence left = drive.trajectorySequenceBuilder(startPose)
+                .lineToConstantHeading(new Vector2d(12,-55))
 
-                .waitSeconds(1)
                 .addDisplacementMarker(() -> {
                     bot.setActiveIntakePosition(activeIntakeState.active);
                     bot.setActiveIntakeState(activeIntakeState.active);
@@ -40,6 +40,7 @@ public class closeRed extends LinearOpMode {
                     bot.setArmState(armState.init);
                     bot.setArmPosition(armState.init, armExtensionState.extending);
                 })
+                .waitSeconds(.75)
                 .lineToConstantHeading(new Vector2d(15, -55))
                 .waitSeconds(.25)
 
@@ -63,7 +64,7 @@ public class closeRed extends LinearOpMode {
                     bot.setClawPosition(clawState.leftClose);
                     bot.setClawState(clawState.leftClose);
                 })
-                .waitSeconds(.75)
+                .waitSeconds(.5)
                 .lineToConstantHeading(new Vector2d(23,-36))
                 .lineToLinearHeading(new Pose2d(24,-36,Math.toRadians(180)))
 
@@ -75,35 +76,27 @@ public class closeRed extends LinearOpMode {
                     bot.outtakeSlide.setPosition(450);
                 })
                 .waitSeconds(.25)
-
                 .lineToConstantHeading(new Vector2d(55, -22.5))
                 .addDisplacementMarker(() -> {
                     bot.setClawPosition(clawState.rightClose);
                     bot.setClawState(clawState.rightClose);
                 })
                 .waitSeconds(.25)
-                .lineToConstantHeading(new Vector2d(51, -24))
+                .lineToConstantHeading(new Vector2d(48, -24))
                 .addDisplacementMarker(() -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setArmPosition(armState.intaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.intaking);
                 })
+                .lineToLinearHeading(new Pose2d(50 ,-61, Math.toRadians(90)))
 
                 .build();
 
-        bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
-        bot.setOuttakeSlideState(outtakeSlidesState.STATION);
-        bot.setArmState(armState.intaking);
-        bot.setArmPosition(armState.intaking, armExtensionState.extending);
-        bot.setWristPosition(wristState.intaking);
-        bot.setWristState(wristState.intaking);
-        bot.setClawPosition(clawState.open);
-        bot.setClawState(clawState.open);
 
         //center ------------------------------------------------------------------
         TrajectorySequence center = drive.trajectorySequenceBuilder(startPose)
                 .waitSeconds(1)
-
+                .lineToConstantHeading(new Vector2d(15, -57.5))
 
                 .addDisplacementMarker( () -> {
                     bot.setActiveIntakePosition(activeIntakeState.active);
@@ -115,13 +108,13 @@ public class closeRed extends LinearOpMode {
                 })
                 .lineToConstantHeading(new Vector2d(15, -55))
 
-
                 .addDisplacementMarker( () -> {
                     bot.setWristPosition(wristState.outtaking);
                     bot.setWristState(wristState.outtaking);
                     bot.setActiveIntakePosition(activeIntakeState.inactive);
                     bot.setActiveIntakeState(activeIntakeState.inactive);
                 })
+
                 .lineToConstantHeading(new Vector2d(15, -55.01))
                 .waitSeconds(.25)
                 .addDisplacementMarker( () -> {
@@ -131,7 +124,7 @@ public class closeRed extends LinearOpMode {
                 })
 
                 .waitSeconds(.25)
-                .lineToConstantHeading(new Vector2d(15, -35.5))
+                .lineToConstantHeading(new Vector2d(15, -34.5))
                 .addDisplacementMarker(() -> {
                     bot.setClawPosition(clawState.leftClose);
                     bot.setClawState(clawState.leftClose);
@@ -161,23 +154,16 @@ public class closeRed extends LinearOpMode {
                     bot.setArmPosition(armState.intaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.intaking);
                 })
+                .lineToLinearHeading(new Pose2d(50 ,-61, Math.toRadians(90)))
 
 
                 .build();
 
-        bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
-        bot.setOuttakeSlideState(outtakeSlidesState.STATION);
-        bot.setArmState(armState.intaking);
-        bot.setArmPosition(armState.intaking, armExtensionState.extending);
-        bot.setWristPosition(wristState.intaking);
-        bot.setWristState(wristState.intaking);
-        bot.setClawPosition(clawState.open);
-        bot.setClawState(clawState.open);
 
         //right ------------------------------------------------------------------
         TrajectorySequence right = drive.trajectorySequenceBuilder(startPose)
                 .waitSeconds(1)
-
+                .lineToConstantHeading(new Vector2d(15,-55))
                 .addDisplacementMarker( () -> {
                     bot.setActiveIntakePosition(activeIntakeState.active);
                     bot.setActiveIntakeState(activeIntakeState.active);
@@ -215,10 +201,10 @@ public class closeRed extends LinearOpMode {
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
                     bot.setArmState(armState.outtaking);
 
-                    bot.outtakeSlide.setPosition(400);
+                    bot.outtakeSlide.setPosition(375);
                 })
 
-                .lineToLinearHeading(new Pose2d(48 ,-40, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d(44 ,-40, Math.toRadians(180)))
                 .lineToConstantHeading(new Vector2d(55,-40))
 
                 .addDisplacementMarker(() -> {
@@ -226,24 +212,17 @@ public class closeRed extends LinearOpMode {
                     bot.setClawState(clawState.rightClose);
                 })
                 .waitSeconds(.5)
-                .lineToConstantHeading(new Vector2d(50, -40))
+                .lineToConstantHeading(new Vector2d(47.5, -40))
                 .addDisplacementMarker(() -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setArmPosition(armState.intaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.intaking);
                 })
+                .lineToLinearHeading(new Pose2d(47.5, -61, Math.toRadians(90)))
 
 
                 .build();
 
-        bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
-        bot.setOuttakeSlideState(outtakeSlidesState.STATION);
-        bot.setArmState(armState.intaking);
-        bot.setArmPosition(armState.intaking, armExtensionState.extending);
-        bot.setWristPosition(wristState.intaking);
-        bot.setWristState(wristState.intaking);
-        bot.setClawPosition(clawState.open);
-        bot.setClawState(clawState.open);
 
         //camera initialization -----------------------------------------------------
         // initCam();
@@ -255,19 +234,40 @@ public class closeRed extends LinearOpMode {
         {
             case LEFT:
                 drive.setPoseEstimate(startPose);
-
+                bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                bot.setOuttakeSlideState(outtakeSlidesState.STATION);
+                bot.setArmState(armState.intaking);
+                bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                bot.setWristPosition(wristState.intaking);
+                bot.setWristState(wristState.intaking);
+                bot.setClawPosition(clawState.open);
+                bot.setClawState(clawState.open);
                 drive.followTrajectorySequence(left);
 
                 break;
             case RIGHT:
                 drive.setPoseEstimate(startPose);
-
+                bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                bot.setOuttakeSlideState(outtakeSlidesState.STATION);
+                bot.setArmState(armState.intaking);
+                bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                bot.setWristPosition(wristState.intaking);
+                bot.setWristState(wristState.intaking);
+                bot.setClawPosition(clawState.open);
+                bot.setClawState(clawState.open);
                 drive.followTrajectorySequence(right);
 
                 break;
             case MIDDLE:
                 drive.setPoseEstimate(startPose);
-
+                bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                bot.setOuttakeSlideState(outtakeSlidesState.STATION);
+                bot.setArmState(armState.intaking);
+                bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                bot.setWristPosition(wristState.intaking);
+                bot.setWristState(wristState.intaking);
+                bot.setClawPosition(clawState.open);
+                bot.setClawState(clawState.open);
                 drive.followTrajectorySequence(center);
 
                 break;
@@ -313,5 +313,6 @@ public class closeRed extends LinearOpMode {
         });
     }
 }
+
 
 

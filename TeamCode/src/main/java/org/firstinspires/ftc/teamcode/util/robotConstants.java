@@ -11,22 +11,24 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int MOSTHIGHLEFT = -1285;
-        public static int MOSTHIGHRIGHT = 1285;
+        public static int MOSTHIGHLEFT = 1300;
+        public static int MOSTHIGHRIGHT = 1300;
 
-        public static int HIGHLEFT = -1210;
-        public static int HIGHRIGHT = 1210;
+        public static int HIGHLEFT = 1275;
+        public static int HIGHRIGHT = 1275;
 
-        public static int MEDIUMLEFT = -900;
+        public static int MEDIUMLEFT = 900;
         public static int MEDIUMRIGHT = 900;
+        public static int LOWMEDLEFT = 650;
+        public static int LOWMEDRIGHT=650;
 
-        public static int LOWLEFT = -450;
+        public static int LOWLEFT = 450;
         public static int LOWRIGHT = 450;
 
-        public static int AUTOLOWLEFT = -100;
+        public static int AUTOLOWLEFT = 100;
         public static int AUTOLOWRIGHT = 100;
 
-        public static int GROUNDLEFT = -50;
+        public static int GROUNDLEFT = 50;
         public static int GROUNDRIGHT = 50;
     }
 
@@ -49,10 +51,10 @@ public class robotConstants
         public static double intakeAuto = 0.0;
         public static double intakeTeleOp = 0.0;
 
-        public static double leftClose = .94;
-        public static double rightClose = .35;
-        public static double leftOpen = .77;
-        public static double rightOpen = .47;
+        public static double leftClose = .965;
+        public static double rightClose = .31;
+        public static double leftOpen = .74;
+        public static double rightOpen = .55;
         public static double autoLeftClose = .65;
         public static double autoRightClose = .63;
         public static double rightCloseOnePixel = .58;
@@ -92,9 +94,9 @@ public class robotConstants
 //        public static double outtakingLeftHigh = .59;
 //        public static double outtakingRightHigh = .29;
 
-        public static double initLeft = .14;
+        public static double initLeft = .11;
 
-        public static double initRight = .59;
+        public static double initRight = .62;
 
         public static double outtakingDownLeft = .62;
         public static double outtakingDownRight = .08;
@@ -113,4 +115,11 @@ public class robotConstants
         public static double lowPosition = 0;
 
     }
+
+    public static class drone{
+        public static double droneLaunch = .4;
+        public static double droneReset = .6;
+    }
+
+
 }
