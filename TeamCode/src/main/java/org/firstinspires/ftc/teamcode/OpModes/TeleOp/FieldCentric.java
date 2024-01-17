@@ -250,6 +250,23 @@ public class FieldCentric extends OpMode {
             bot.setArmState(armState.init);
         }
 
+        if (operator.wasJustPressed(GamepadKeys.Button.B)) {
+            //   bot.setWristState(wristState.normal);
+            //   bot.setWristPosition(wristState.normal);
+
+            if (bot.getArmState() != null && bot.getArmState().equals(armState.outtaking)) {
+                bot.setWristState(wristState.intaking);
+                bot.setWristPosition(wristState.intaking);
+            }
+
+            bot.setWristState(wristState.init);
+            bot.setWristPosition(wristState.init);
+
+            bot.setArmPosition(armState.intakeinit, armExtensionState.extending);
+            bot.setArmState(armState.intakeinit);
+        }
+
+
         if (operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
             if (bot.getLeftClawState() != null && bot.getLeftClawState().equals(clawState.leftClose)) {
                 bot.setOpenLeftClawPosition();

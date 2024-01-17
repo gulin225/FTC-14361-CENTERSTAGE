@@ -5,6 +5,8 @@ import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.autoDropRight;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initRight;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingInitLeft;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingInitRight;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingLeft;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingRight;
 import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingDownLeft;
@@ -61,6 +63,12 @@ public class Arm
 
                 armExtension = armExtensionState.station;
                 break;
+            case intakeinit:
+                leftArm.setPosition(intakingInitLeft);
+                rightArm.setPosition(intakingInitRight);
+
+                armExtension = armExtensionState.station;
+                break;
             case outtakingDown:
                 leftArm.setPosition(outtakingDownLeft);
                 rightArm.setPosition(outtakingDownRight);
@@ -73,9 +81,11 @@ public class Arm
 
                 armExtension = armExtensionState.station;
                 break;
+
             default:
                 leftArm.setPosition(initLeft);
                 rightArm.setPosition(initRight);
+
         }
     }
 
