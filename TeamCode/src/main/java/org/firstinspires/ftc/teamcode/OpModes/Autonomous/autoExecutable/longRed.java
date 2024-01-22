@@ -37,52 +37,68 @@ public class longRed extends LinearOpMode {
         drive.setPoseEstimate(startPose);
         //left ------------------------------------------------------------------
         TrajectorySequence left = drive.trajectorySequenceBuilder(startPose)
+
+                // this aligns to tape
                 .lineToConstantHeading(new Vector2d(-37,-52))
 
                 .addDisplacementMarker(() -> {
-
+                    // init all transfer stuff
                     bot.setArmPosition(armState.init, armExtensionState.extending);
                     bot.setWristPosition(wristState.init);
                     bot.setLidPosition(lidState.close);
 
                 })
 
-                .lineToConstantHeading(new Vector2d(-37, -44))
+                // pushes to tape
+                .lineToConstantHeading(new Vector2d(-38, -44))
 
+                // going back to not mess pixel up
+                .lineToConstantHeading(new Vector2d(-38, -50))
+                // back up and move towards center
+                .lineToConstantHeading(new Vector2d(-32,-50))
 
-                .lineToConstantHeading(new Vector2d(-34,-50))
+                // go to gate level & face outtaking
+                .lineToLinearHeading(new Pose2d(-32,-12, Math.toRadians(180)))
 
-                .lineToLinearHeading(new Pose2d(-34,-55,Math.toRadians(180)))
+                // stopping after going under gate
+                .lineToConstantHeading(new Vector2d(45,-12))
+
+                // go under gate
                 .lineToConstantHeading(new Vector2d(45,-55))
+
+                // set all transfer to outtake states
                 .addDisplacementMarker( () -> {
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
                    bot.setWristPosition(wristState.outtaking);
                     bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
                 })
 
-                .lineToConstantHeading(new Vector2d(44, -23))
+                // go to backboard
                 .waitSeconds(.25)
                 .lineToConstantHeading(new Vector2d(61, -23))
+
+                // score!
                 .addDisplacementMarker(() -> {
                 bot.setLidState(lidState.open);
                 })
                 .waitSeconds(.25)
-                .lineToConstantHeading(new Vector2d(50,-22))
 
+                // back up from board
+                .lineToConstantHeading(new Vector2d(50,-23))
+
+                // set states for tele op
                 .addDisplacementMarker(() -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setArmPosition(armState.init, armExtensionState.extending);
                     bot.setWristPosition(wristState.init);
                 })
 
+                // park
                 .lineToLinearHeading(new Pose2d(50 ,-15, Math.toRadians(90)))
                 .lineToConstantHeading(new Vector2d(55,-15))
+
                 .build();
 
-
-        //waitForStart();
-        // if (isStopRequested()) return;
-        //drive.followTrajectorySequence(left);
 
         //center ------------------------------------------------------------------
         TrajectorySequence center = drive.trajectorySequenceBuilder(startPose)
@@ -144,7 +160,7 @@ public class longRed extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(55,-15))
 
                 .build();
-        
+
 
         //right ------------------------------------------------------------------
         TrajectorySequence right = drive.trajectorySequenceBuilder(startPose)
