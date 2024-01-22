@@ -61,8 +61,8 @@ public class closeRed extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(13,-36,Math.toRadians(325)))
 
                 .addDisplacementMarker( () -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    ;
+                    
                 })
                 .waitSeconds(.5)
                 .lineToConstantHeading(new Vector2d(23,-36))
@@ -78,8 +78,8 @@ public class closeRed extends LinearOpMode {
                 .waitSeconds(.25)
                 .lineToConstantHeading(new Vector2d(55, -22.5))
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
                 .waitSeconds(.25)
                 .lineToConstantHeading(new Vector2d(48, -24))
@@ -126,8 +126,8 @@ public class closeRed extends LinearOpMode {
                 .waitSeconds(.25)
                 .lineToConstantHeading(new Vector2d(15, -34.5))
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    ;
+                    
                 })
                 .lineToConstantHeading(new Vector2d(15, -40))
 
@@ -143,8 +143,8 @@ public class closeRed extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(55,-32))
                 .waitSeconds(.25)
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
 
                 .lineToConstantHeading(new Vector2d(48, -32))
@@ -191,8 +191,8 @@ public class closeRed extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(26,-44))
 
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    ;
+                    
                 })
 
                 .lineToConstantHeading(new Vector2d(52,-40))
@@ -208,8 +208,8 @@ public class closeRed extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(55,-40))
 
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
                 .waitSeconds(.5)
                 .lineToConstantHeading(new Vector2d(47.5, -40))
@@ -240,8 +240,8 @@ public class closeRed extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                bot.setClawPosition(clawState.open);
-                bot.setClawState(clawState.open);
+                
+                
                 drive.followTrajectorySequence(left);
 
                 break;
@@ -253,8 +253,8 @@ public class closeRed extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                bot.setClawPosition(clawState.open);
-                bot.setClawState(clawState.open);
+                
+                
                 drive.followTrajectorySequence(right);
 
                 break;
@@ -266,8 +266,8 @@ public class closeRed extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                bot.setClawPosition(clawState.open);
-                bot.setClawState(clawState.open);
+                
+                
                 drive.followTrajectorySequence(center);
 
                 break;

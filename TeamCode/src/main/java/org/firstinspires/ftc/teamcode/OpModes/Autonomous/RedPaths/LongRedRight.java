@@ -59,8 +59,8 @@ public class LongRedRight extends LinearOpMode
 
 
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    
+                    
                 })
                 .lineToConstantHeading(new Vector2d(-29,-34))
                 .lineToConstantHeading(new Vector2d(-32,-9))
@@ -79,8 +79,8 @@ public class LongRedRight extends LinearOpMode
                 .lineToConstantHeading(new Vector2d(51, -33))
                 .lineToConstantHeading(new Vector2d(62, -33))
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
 
                 .addDisplacementMarker(() -> {
@@ -103,8 +103,8 @@ public class LongRedRight extends LinearOpMode
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
         bot.setWristPosition(wristState.intaking);
         bot.setWristState(wristState.intaking);
-        bot.setClawPosition(clawState.open);
-        bot.setClawState(clawState.open);
+        
+        
 
         drive.followTrajectorySequence(toLeftTape);
     }

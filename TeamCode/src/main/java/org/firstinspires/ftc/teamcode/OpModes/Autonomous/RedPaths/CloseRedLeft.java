@@ -62,8 +62,8 @@ public class CloseRedLeft extends LinearOpMode {
                 .lineToLinearHeading(new Pose2d(15,-36,Math.toRadians(325)))
 
                 .addDisplacementMarker(30.75, () -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    
+                    
                 })
                 .waitSeconds(.75)
                 .lineToLinearHeading(new Pose2d(20,-36,Math.toRadians(180)))
@@ -79,8 +79,8 @@ public class CloseRedLeft extends LinearOpMode {
 
                 .lineToConstantHeading(new Vector2d(59, -24))
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
                 .waitSeconds(.25)
                 .lineToConstantHeading(new Vector2d(51, -24))
@@ -96,8 +96,8 @@ public class CloseRedLeft extends LinearOpMode {
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
         bot.setWristPosition(wristState.intaking);
         bot.setWristState(wristState.intaking);
-        bot.setClawPosition(clawState.open);
-        bot.setClawState(clawState.open);
+        
+        
 
 
         drive.followTrajectorySequence(everything);

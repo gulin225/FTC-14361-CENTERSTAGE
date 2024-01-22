@@ -38,7 +38,7 @@ public class Arm
         rightAnalogInput = hardwareMap.get(AnalogInput.class, "rightAnalogInput");
         leftAnalogInput = hardwareMap.get(AnalogInput.class, "leftAnalogInput");
 
-        leftArm.setInverted(true);
+
     }
 
     public void setArmPosition(armState armState, armExtensionState armExtensionState)

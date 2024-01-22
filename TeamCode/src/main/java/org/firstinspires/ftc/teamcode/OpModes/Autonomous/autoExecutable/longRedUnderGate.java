@@ -66,8 +66,8 @@ public class longRedUnderGate extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(-37, -44))
 
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    ;
+                    
                 })
                 .waitSeconds(1)
 
@@ -87,8 +87,8 @@ public class longRedUnderGate extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(61, -23))
                 .waitSeconds(.25)
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
                 .waitSeconds(.25)
                 .lineToConstantHeading(new Vector2d(50,-22))
@@ -124,8 +124,8 @@ public class longRedUnderGate extends LinearOpMode {
 //                .lineToConstantHeading(new Vector2d(61, -23))
 //                .waitSeconds(.5)
 //                .addDisplacementMarker(() -> {
-//                    bot.setClawPosition(clawState.rightClose);
-//                    bot.setClawState(clawState.rightClose);
+//                    
+//                    
 //                })
 //                .lineToConstantHeading(new Vector2d(50,-22))
 //
@@ -177,8 +177,8 @@ public class longRedUnderGate extends LinearOpMode {
 
                 .lineToConstantHeading(new Vector2d(-26, -36))
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    ;
+                    
 
                 })
                 .waitSeconds(1)
@@ -198,8 +198,8 @@ public class longRedUnderGate extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(44, -29))
                 .lineToConstantHeading(new Vector2d(61,-29))
                 .addDisplacementMarker( () -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
 
                 .lineToConstantHeading(new Vector2d(50,-31))
@@ -233,8 +233,8 @@ public class longRedUnderGate extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(44, -29))
                 .lineToConstantHeading(new Vector2d(61,-29))
                 .addDisplacementMarker( () -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
 
                 .lineToConstantHeading(new Vector2d(50,-31))
@@ -285,8 +285,8 @@ public class longRedUnderGate extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(-24,-29))
                 .waitSeconds(1)
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    ;
+                    
                 })
 
                 .lineToConstantHeading(new Vector2d(-34,-57))
@@ -304,8 +304,8 @@ public class longRedUnderGate extends LinearOpMode {
 
                 .lineToConstantHeading(new Vector2d(62, -35.5))
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
                 .lineToConstantHeading(new Vector2d(50,-38))
 
@@ -338,8 +338,8 @@ public class longRedUnderGate extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                bot.setClawPosition(clawState.open);
-                bot.setClawState(clawState.open);
+                
+                
                 drive.followTrajectorySequence(left);
 
                 break;
@@ -351,8 +351,8 @@ public class longRedUnderGate extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                bot.setClawPosition(clawState.open);
-                bot.setClawState(clawState.open);
+                
+                
                 drive.followTrajectorySequence(right);
 
                 break;
@@ -364,8 +364,8 @@ public class longRedUnderGate extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                bot.setClawPosition(clawState.open);
-                bot.setClawState(clawState.open);
+                
+                
                 drive.followTrajectorySequence(center);
 
                 break;

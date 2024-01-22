@@ -6,6 +6,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.armExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
+import org.firstinspires.ftc.teamcode.Commands.lidState;
 import org.firstinspires.ftc.teamcode.Commands.linkageState;
 import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.slowDownState;
@@ -28,6 +29,8 @@ public class Robot {
     public armState armState;
     public armExtensionState armExtensionState;
     public extensionState extensionState;
+    public Lid lid;
+    public lidState lidstate;
     public ActiveIntake activeIntake;
     public activeIntakeState activeIntakeState;
     public slowDownState slowDownState;
@@ -41,12 +44,14 @@ public class Robot {
         this.telemetry = telemetry;
 
         driveTrain = new Mecanum(hardwareMap);
-        claw = new Claw(hardwareMap);
+        linkage = new Linkage(hardwareMap);
+//        claw = new Claw(hardwareMap);
         wrist = new Wrist(hardwareMap);
         arm = new Arm(hardwareMap);
         outtakeSlide = new OuttakeSlide(hardwareMap);
         //intakeSlide = new IntakeSlide(hardwareMap);
         activeIntake = new ActiveIntake(hardwareMap);
+        lid = new Lid(hardwareMap);
         drone = new Drone(hardwareMap);
     }
 
@@ -169,60 +174,60 @@ public class Robot {
 
     // ---------------------------- Claw ---------------------------- //
 
-    public void setClawPosition(clawState clawState)
-    {
-        claw.setClawPosition(clawState);
-    }
-
-    public void setOpenLeftClawPosition()
-    {
-        claw.leftOpen();
-    }
-
-    public void setOpenRightClawPosition()
-    {
-        claw.rightOpen();
-    }
-
-    public void setCloseLeftClawPosition()
-    {
-        claw.leftClose();
-    }
-
-    public void setCloseRightClawPosition()
-    {
-        claw.rightClose();
-    }
-
-    public void setClawState(clawState clawState)
-    {
-        this.clawState = clawState;
-    }
-
-    public void setLeftClawState(clawState leftclawState)
-    {
-        this.leftclawState = leftclawState;
-    }
-
-    public void setRightClawState(clawState rightclawState)
-    {
-        this.rightclawState = rightclawState;
-    }
-
-    public clawState getClawState()
-    {
-        return clawState;
-    }
-
-    public clawState getLeftClawState()
-    {
-        return leftclawState;
-    }
-
-    public clawState getRightClawState()
-    {
-        return rightclawState;
-    }
+//    public void setClawPosition(clawState clawState)
+//    {
+//        claw.setClawPosition(clawState);
+//    }
+//
+//    public void setOpenLeftClawPosition()
+//    {
+//        claw.leftOpen();
+//    }
+//
+//    public void setOpenRightClawPosition()
+//    {
+//        claw.rightOpen();
+//    }
+//
+//    public void setCloseLeftClawPosition()
+//    {
+//        claw.leftClose();
+//    }
+//
+//    public void setCloseRightClawPosition()
+//    {
+//        claw.rightClose();
+//    }
+//
+//    public void setClawState(clawState clawState)
+//    {
+//        this.clawState = clawState;
+//    }
+//
+//    public void setLeftClawState(clawState leftclawState)
+//    {
+//        this.leftclawState = leftclawState;
+//    }
+//
+//    public void setRightClawState(clawState rightclawState)
+//    {
+//        this.rightclawState = rightclawState;
+//    }
+//
+//    public clawState getClawState()
+//    {
+//        return clawState;
+//    }
+//
+//    public clawState getLeftClawState()
+//    {
+//        return leftclawState;
+//    }
+//
+//    public clawState getRightClawState()
+//    {
+//        return rightclawState;
+//    }
 
     // ---------------------------- ActiveIntake ---------------------------- //
 
@@ -267,9 +272,10 @@ public class Robot {
 
     // ---------------------------- Linkage ---------------------------- //
 
-    public void setHighLinkagePosition(linkageState linkageState)
+    public void setLinkagePosition(linkageState linkageState)
     {
         linkage.setLinkagePosition(linkageState);
+        this.linkageState = linkageState;
     }
 
     public void setLinkageState(linkageState linkageState)
@@ -285,6 +291,21 @@ public class Robot {
     public void getLinkagePosition()
     {
         linkage.getLinkagePosition();
+    }
+    //---------------------------- Lid ---------------------------- //
+    public void setLidState(lidState lidstate){
+
+        this.lidstate = lidstate;
+    }
+    public void setLidPosition(lidState lidstate){
+        lid.setLidPosition(lidstate);
+        this.lidstate = lidstate;
+    }
+    public lidState getLidState(){
+        return lidstate;
+    }
+    public void setLidCustomPosition(double position){
+        lid.setLidCustomPosition(position);
     }
 }
 

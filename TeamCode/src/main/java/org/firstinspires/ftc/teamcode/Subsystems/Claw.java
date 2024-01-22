@@ -12,7 +12,7 @@ import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 public class Claw
 {
-    private ServoEx leftHand, rightHand;
+   /* private ServoEx leftHand, rightHand;
 
     public Claw(HardwareMap hardwareMap)
     {
@@ -103,4 +103,6 @@ public class Claw
     {
         return leftHand.getPosition();
     }
+    */
+
 }

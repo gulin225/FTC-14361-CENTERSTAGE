@@ -16,6 +16,8 @@ public class Wrist
     public Wrist(HardwareMap hardwareMap)
     {
         wristServo = new SimpleServo(hardwareMap, "wristServo", minAngle, maxAngle, AngleUnit.DEGREES);
+        wristServo.setInverted(false);
+
     }
 
     public void setWristPosition(wristState wristState)
@@ -38,6 +40,9 @@ public class Wrist
     public double getWristPosition()
     {
         return wristServo.getPosition();
+    }
+    public void setWristCustomPosition(double position){
+        wristServo.setPosition(position);
     }
 
 }

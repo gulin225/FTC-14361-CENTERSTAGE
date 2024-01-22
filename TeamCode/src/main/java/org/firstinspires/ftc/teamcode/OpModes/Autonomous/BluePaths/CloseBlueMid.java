@@ -61,8 +61,8 @@ public class CloseBlueMid extends LinearOpMode {
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(10, 34))
                 .addDisplacementMarker(() -> {
-                    bot.setClawPosition(clawState.leftClose);
-                    bot.setClawState(clawState.leftClose);
+                    
+                    
                 })
                 .lineToConstantHeading(new Vector2d(10, 40))
 
@@ -75,8 +75,8 @@ public class CloseBlueMid extends LinearOpMode {
                 })
                 .lineToConstantHeading(new Vector2d(52,36))
                 .addDisplacementMarker( () -> {
-                    bot.setClawPosition(clawState.rightClose);
-                    bot.setClawState(clawState.rightClose);
+                    
+                    
                 })
                 .waitSeconds(.5)
                 .lineToConstantHeading(new Vector2d(48, 36))
@@ -100,8 +100,8 @@ public class CloseBlueMid extends LinearOpMode {
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
         bot.setWristPosition(wristState.intaking);
         bot.setWristState(wristState.intaking);
-        bot.setClawPosition(clawState.open);
-        bot.setClawState(clawState.open);
+        
+        
 
 
         drive.followTrajectorySequence(everything);

@@ -15,7 +15,7 @@ public class Linkage
 
     public Linkage(HardwareMap hardwareMap)
     {
-        linkageServo = new SimpleServo(hardwareMap, "wristServo", minAngle, maxAngle, AngleUnit.DEGREES);
+        linkageServo = new SimpleServo(hardwareMap, "linkageServo", minAngle, maxAngle, AngleUnit.DEGREES);
     }
 
     public void setLinkagePosition(linkageState linkageState)
