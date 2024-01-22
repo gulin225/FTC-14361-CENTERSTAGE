@@ -105,7 +105,7 @@ public class FieldCentric extends OpMode {
         }
 
 //        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
-//            if (bot.getvirtualFourBarState().equals(virtualFourBarState.intaking)) {
+//            if (bot.getarmState().equals(armState.intaking)) {
 //                bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
 //                bot.setIntakeSlideState(intakeSlidesState.STATION);
 //            } else {
@@ -116,7 +116,7 @@ public class FieldCentric extends OpMode {
 //        }
 //
 //        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON)) {
-//            if (bot.getvirtualFourBarState().equals(virtualFourBarState.intaking)) {
+//            if (bot.getarmState().equals(armState.intaking)) {
 //                bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
 //                bot.setIntakeSlideState(intakeSlidesState.STATION);
 //            } else {

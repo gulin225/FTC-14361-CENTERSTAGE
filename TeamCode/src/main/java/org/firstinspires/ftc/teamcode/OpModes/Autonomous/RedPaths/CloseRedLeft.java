@@ -46,8 +46,8 @@ public class CloseRedLeft extends LinearOpMode {
                 .waitSeconds(.25)
 
 //                .addDisplacementMarker(5, () -> {
-//                    bot.setVirtualFourBarState(virtualFourBarState.init);
-//                    bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
+//                    bot.setVirtualFourBarState(armState.init);
+//                    bot.setVirtualFourBarPosition(armState.init, armExtensionState.extending);
 //                })
                 .addDisplacementMarker( () -> {
                     bot.setWristPosition(wristState.outtaking);

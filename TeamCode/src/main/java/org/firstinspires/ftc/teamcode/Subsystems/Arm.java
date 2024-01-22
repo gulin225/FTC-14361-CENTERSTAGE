@@ -1,18 +1,18 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
 
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.autoDropLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.autoDropRight;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.initRight;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingInitLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingInitRight;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.intakingRight;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingDownLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingDownRight;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingLeft;
-import static org.firstinspires.ftc.teamcode.util.robotConstants.virtualFourBar.outtakingRight;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.autoDropLeft;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.autoDropRight;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.initLeft;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.initRight;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.intakingInitLeft;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.intakingInitRight;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.intakingLeft;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.intakingRight;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.outtakingDownLeft;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.outtakingDownRight;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.outtakingLeft;
+import static org.firstinspires.ftc.teamcode.util.robotConstants.Arm.outtakingRight;
 
 import com.arcrobotics.ftclib.hardware.ServoEx;
 import com.arcrobotics.ftclib.hardware.SimpleServo;
@@ -22,7 +22,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.Commands.armExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.armState;
-import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 public class Arm
 {
@@ -52,8 +51,8 @@ public class Arm
                 armExtension = armExtensionState.station;
                 break;
 //            case outtakingHigh:
-//                leftArm.setPosition(robotConstants.virtualFourBar.outtakingLeftHigh);
-//                rightArm.setPosition(robotConstants.virtualFourBar.outtakingRightHigh);
+//                leftArm.setPosition(robotConstants.arm.outtakingLeftHigh);
+//                rightArm.setPosition(robotConstants.arm.outtakingRightHigh);
 //
 //                armExtension =armExtensionState.station;
 //                break;

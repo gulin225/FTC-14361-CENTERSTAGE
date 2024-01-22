@@ -124,7 +124,7 @@ public class longBlue extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(-34, 31))
                 .lineToConstantHeading(new Vector2d(-34, 34))
                 .addDisplacementMarker(() -> {
-                    ;
+
                     
                 })
                 .lineToConstantHeading(new Vector2d(-34,39))

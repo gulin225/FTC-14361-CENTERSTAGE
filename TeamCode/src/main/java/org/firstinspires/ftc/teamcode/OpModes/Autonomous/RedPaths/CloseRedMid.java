@@ -49,8 +49,8 @@ public class CloseRedMid extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(15, -61))
 
 //                .addDisplacementMarker(5, () -> {
-//                    bot.setVirtualFourBarState(virtualFourBarState.init);
-//                    bot.setVirtualFourBarPosition(virtualFourBarState.init, virtualFourBarExtensionState.extending);
+//                    bot.setVirtualFourBarState(armState.init);
+//                    bot.setVirtualFourBarPosition(armState.init, armExtensionState.extending);
 //                })
                 .addDisplacementMarker( () -> {
                     bot.setWristPosition(wristState.outtaking);

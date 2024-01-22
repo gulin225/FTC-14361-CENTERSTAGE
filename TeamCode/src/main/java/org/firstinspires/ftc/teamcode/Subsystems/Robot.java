@@ -101,6 +101,7 @@ public class Robot {
     public void setOuttakeSlidePosition(outtakeSlidesState outtakeSlidesState, extensionState extensionState)
     {
         outtakeSlide.setOuttakeSlidePosition(extensionState,outtakeSlidesState);
+        this.outtakeSlidesState = outtakeSlidesState;
     }
 
     public outtakeSlidesState getOuttakeState()
@@ -128,6 +129,7 @@ public class Robot {
     public void setWristPosition(wristState wristState)
     {
         wrist.setWristPosition(wristState);
+        this.wristState = wristState;
     }
 
     public void setWristState(wristState wristState)
@@ -150,6 +152,7 @@ public class Robot {
     public void setArmPosition(armState armState, armExtensionState armExtensionState)
     {
         arm.setArmPosition(armState, armExtensionState);
+        this.armState = armState;
     }
 
     public void setArmState(armState armState)
@@ -234,6 +237,7 @@ public class Robot {
     public void setActiveIntakePosition(activeIntakeState activeIntakeState)
     {
         activeIntake.setActiveIntakePosition(activeIntakeState);
+        this.activeIntakeState = activeIntakeState;
     }
 
     public activeIntakeState getActiveIntakeState()
