@@ -101,38 +101,50 @@ public class longRed extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(-26, -36))
 
                 // Backing up and aligning with backboard
-                .lineToConstantHeading(new Vector2d(-26  ,-57))
+                .lineToConstantHeading(new Vector2d(-26  ,-42))
 
-                .lineToLinearHeading(new Pose2d(-34,-57,Math.toRadians(180)))
+                // turning to face backboard & moving towards backboard
+                .lineToLinearHeading(new Pose2d(-34,-42, Math.toRadians(180)))
 
-                .lineToConstantHeading(new Vector2d(45,-57))
+                // going to level with gate
+                .lineToConstantHeading(new Vector2d(-34 , -12))
+
+                // stopping after going under gate
+                .lineToConstantHeading(new Vector2d(45,-12))
+
+                // all transfer set to outtake
                 .addDisplacementMarker( () -> {
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
                     bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
                     bot.setWristPosition(wristState.outtaking);
                 })
+                // wait a second so it finishes outtake setup
                 .waitSeconds(.25)
 
-                .lineToConstantHeading(new Vector2d(44, -29))
+                // going to backboard
                 .lineToConstantHeading(new Vector2d(61,-29))
+
+                // open up the box
                 .addDisplacementMarker( () -> {
                  bot.setLidState(lidState.open);
-
                 })
 
+                // back up from backboard
                 .lineToConstantHeading(new Vector2d(50,-31))
 
+                // prepare states for tele op
                 .addDisplacementMarker(() -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setArmPosition(armState.intaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.intaking);
                 })
+
+                // parking
                 .lineToLinearHeading(new Pose2d(50 ,-15, Math.toRadians(90)))
                 .lineToConstantHeading(new Vector2d(55,-15))
+
                 .build();
-        // waitForStart();
-        //if (isStopRequested()) return;
-        //drive.followTrajectorySequence(center);
+        
 
         //right ------------------------------------------------------------------
         TrajectorySequence right = drive.trajectorySequenceBuilder(startPose)
