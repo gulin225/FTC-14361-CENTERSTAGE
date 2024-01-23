@@ -22,8 +22,8 @@ public class robotConstants
         public static int LOWMEDLEFT = 850;
         public static int LOWMEDRIGHT=850;
 
-        public static int LOWLEFT = 550;
-        public static int LOWRIGHT = 550;
+        public static int LOWLEFT = 600;
+        public static int LOWRIGHT = 600;
 
         public static int AUTOLOWLEFT = 100;
         public static int AUTOLOWRIGHT = 100;
