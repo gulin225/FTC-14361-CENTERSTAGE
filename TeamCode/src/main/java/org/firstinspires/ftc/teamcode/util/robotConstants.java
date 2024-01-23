@@ -66,8 +66,10 @@ public class robotConstants
         public static double active = -.9;
         public static double reverseActive = .9;
 
-        public static double autoActive = 0.34;
-        public static double autoReverseActive = -0.34;
+
+
+        public static double autoActive = -.7;
+        public static double autoReverseActive = .7;
     }
 
     public static class Climb
@@ -78,14 +80,14 @@ public class robotConstants
     public static class Wrist
     {
         public static double outtaking = .2;
-        public static double intaking = 1;
+        public static double intaking = .985;
 //        public static double intaking = .79;
         public static double init = .65;
     }
     public static class Lid
     {
         public static double close = 0;
-        public static double open =.4 ;
+        public static double open =.2 ;
     }
 
     public static class Arm
@@ -120,9 +122,9 @@ public class robotConstants
 
     public static class linkage
     {
-        public static double highPosition = .8;
-        public static double mediumPosition = .9;
-        public static double lowPosition = 1;
+        public static double highPosition = .84;
+        public static double mediumPosition = .875;
+        public static double lowPosition = .95;
 
     }
 

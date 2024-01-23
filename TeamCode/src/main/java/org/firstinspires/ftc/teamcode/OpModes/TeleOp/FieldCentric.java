@@ -38,11 +38,13 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("Time taken: " + getRuntime() + " seconds.");
         telemetry.update();
 
-        bot.setArmPosition(armState.init, armExtensionState.extending);
-        bot.setArmState(armState.init);
+        bot.setArmPosition(armState.intaking, armExtensionState.extending);
+
 
         bot.setWristPosition(wristState.intaking);
-        bot.setWristState(wristState.intaking);
+
+
+        bot.setLinkagePosition(linkageState.LOW);
 
         // bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
         // bot.setIntakeSlideState(intakeSlidesState.STATION);
@@ -162,6 +164,18 @@ public class FieldCentric extends OpMode {
 
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
             bot.launchDrone();
+        }
+        if(driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
+            if (bot.getLinkageState() != null && bot.getLinkageState().equals(linkageState.HIGH)) {
+                bot.setLinkagePosition(linkageState.LOW);
+            }
+            else if (bot.getLinkageState() != null && bot.getLinkageState().equals(linkageState.LOW)) {
+                bot.setLinkagePosition(linkageState.HIGH);
+            }
+            else{
+                bot.setLinkagePosition(linkageState.LOW);
+            }
+
         }
 
         // --------------------------- OPERATOR CODE --------------------------- //
@@ -301,18 +315,7 @@ public class FieldCentric extends OpMode {
                 bot.setLidPosition(lidState.close);
             }
         }
-        if(operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
-            if (bot.getLinkageState() != null && bot.getLinkageState().equals(linkageState.HIGH)) {
-              bot.setLinkagePosition(linkageState.LOW);
-            }
-            else if (bot.getLinkageState() != null && bot.getLinkageState().equals(linkageState.LOW)) {
-                bot.setLinkagePosition(linkageState.HIGH);
-            }
-            else{
-                bot.setLinkagePosition(linkageState.LOW);
-            }
 
-        }
 
     }
     //        if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {

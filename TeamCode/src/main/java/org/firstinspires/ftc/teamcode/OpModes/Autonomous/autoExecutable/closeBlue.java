@@ -101,57 +101,37 @@ public class closeBlue extends LinearOpMode {
         //}
         //center ------------------------------------------------------------------
         TrajectorySequence center = drive.trajectorySequenceBuilder(startPose)
-                .lineToConstantHeading(new Vector2d(12,55))
+
+
+                .lineToConstantHeading(new Vector2d(10,55))
                 .addDisplacementMarker(() -> {
-                    bot.setActiveIntakePosition(activeIntakeState.active);
-                    bot.setActiveIntakeState(activeIntakeState.active);
-
-                })
-
-                .lineToConstantHeading(new Vector2d(11,55))
-                .addDisplacementMarker(() -> {
-
                     bot.setWristPosition(wristState.init);
-                    bot.setWristState(wristState.init);
-                    bot.setArmState(armState.init);
                     bot.setArmPosition(armState.init, armExtensionState.extending);
+                    bot.setLidPosition(lidState.close);
                 })
-                .lineToConstantHeading(new Vector2d(10, 50))
-
-                .addDisplacementMarker( () -> {
-                    bot.setWristPosition(wristState.outtaking);
-                    bot.setWristState(wristState.outtaking);
-                    bot.setActiveIntakePosition(activeIntakeState.inactive);
-                    bot.setActiveIntakeState(activeIntakeState.inactive);
-                })
-
 
                 .lineToConstantHeading(new Vector2d(10, 45))
-                .waitSeconds(.25)
-                .addDisplacementMarker( () -> {
-                    bot.setArmPosition(armState.autoDrop, armExtensionState.extending);
-                    bot.setArmState(armState.autoDrop);
 
-                })
                 .waitSeconds(1)
-                .lineToConstantHeading(new Vector2d(10, 34))
-                .addDisplacementMarker(() -> {
-                    ;
-                    
-                })
+                .lineToConstantHeading(new Vector2d(10, 33.5))
+
                 .lineToConstantHeading(new Vector2d(10, 38))
                 .lineToLinearHeading(new Pose2d(40 ,38, Math.toRadians(180)))
                 .addDisplacementMarker( () -> {
-                    bot.outtakeSlide.setPosition(450);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
-                    bot.setArmState(armState.outtaking);
+                  bot.setWristPosition(wristState.outtaking);
                 })
+
                 .lineToConstantHeading(new Vector2d(52,36))
                 .addDisplacementMarker( () -> {
-                    
-                    
+                    bot.setLidPosition(lidState.open);
                 })
-                .waitSeconds(.25)
+                .waitSeconds(.5)
+                .lineToConstantHeading(new Vector2d(51.8, 36))
+                .addDisplacementMarker( () -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
+                })
                 .lineToConstantHeading(new Vector2d(43, 36))
                 .addDisplacementMarker( () -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
@@ -160,18 +140,13 @@ public class closeBlue extends LinearOpMode {
                 })
                 .lineToConstantHeading(new Vector2d(43, 47))
                 .lineToLinearHeading(new Pose2d(49 ,58, Math.toRadians(270)))
+
                 .build();
-        //waitForStart();
-        //if(isStopRequested()) return;
-        //     bot.intakeSlide.setPosition(50);
-        //drive.followTrajectorySequence(center);
+
         //right ------------------------------------------------------------------
         TrajectorySequence right = drive.trajectorySequenceBuilder(startPose)
                 .lineToConstantHeading(new Vector2d(15, 55))
-                .addDisplacementMarker( () -> {
-                    bot.setActiveIntakePosition(activeIntakeState.active);
-                    bot.setActiveIntakeState(activeIntakeState.active);
-                })
+
                 .waitSeconds(.25)
                 .lineToConstantHeading(new Vector2d(15, 54))
 
