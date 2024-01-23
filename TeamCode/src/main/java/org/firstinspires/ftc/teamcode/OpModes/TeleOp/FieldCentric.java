@@ -45,6 +45,7 @@ public class FieldCentric extends OpMode {
 
 
         bot.setLinkagePosition(linkageState.LOW);
+        bot.setLidPosition(lidState.open);
 
         // bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
         // bot.setIntakeSlideState(intakeSlidesState.STATION);
@@ -203,19 +204,18 @@ public class FieldCentric extends OpMode {
             bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
             bot.setOuttakeSlideState(outtakeSlidesState.MEDIUMOUT);
 
-            bot.wrist.setWristCustomPosition( robotConstants.Wrist.outtaking);
+
         }
 
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
             bot.setOuttakeSlidePosition(outtakeSlidesState.LOWMED, extensionState.extending);
             bot.setOuttakeSlideState(outtakeSlidesState.LOWMED);
-            bot.wrist.setWristCustomPosition(robotConstants.Wrist.outtaking);
+
         }
 
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)) {
             bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
             bot.setOuttakeSlideState(outtakeSlidesState.LOWOUT);
-            bot.wrist.setWristCustomPosition( robotConstants.Wrist.outtaking);
         }
 
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {

@@ -11,19 +11,19 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int MOSTHIGHLEFT = 1300;
-        public static int MOSTHIGHRIGHT = 1300;
+        public static int MOSTHIGHLEFT = 1350;
+        public static int MOSTHIGHRIGHT = 1350;
 
         public static int HIGHLEFT = 1275;
         public static int HIGHRIGHT = 1275;
 
-        public static int MEDIUMLEFT = 1050;
-        public static int MEDIUMRIGHT = 1050;
-        public static int LOWMEDLEFT = 850;
-        public static int LOWMEDRIGHT=850;
+        public static int MEDIUMLEFT = 1150;
+        public static int MEDIUMRIGHT = 1150;
+        public static int LOWMEDLEFT = 900;
+        public static int LOWMEDRIGHT=900;
 
-        public static int LOWLEFT = 600;
-        public static int LOWRIGHT = 600;
+        public static int LOWLEFT = 675;
+        public static int LOWRIGHT = 675;
 
         public static int AUTOLOWLEFT = 100;
         public static int AUTOLOWRIGHT = 100;
@@ -80,7 +80,7 @@ public class robotConstants
     public static class Wrist
     {
         public static double outtaking = .2;
-        public static double intaking = .985;
+        public static double intaking = .995;
 //        public static double intaking = .79;
         public static double init = .65;
     }
@@ -94,9 +94,9 @@ public class robotConstants
 
     {
 
-        public static double intakingLeft = 0.045;
+        public static double intakingLeft = 0.02;
 
-        public static double intakingRight = 0.045;
+        public static double intakingRight = 0.035;
 
 
         public static double intakingInitLeft = .5;
