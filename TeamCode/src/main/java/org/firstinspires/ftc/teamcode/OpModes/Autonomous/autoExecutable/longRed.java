@@ -29,215 +29,219 @@ public class longRed extends LinearOpMode {
         bot = new Robot(hardwareMap, telemetry);
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         Pose2d startPose = new Pose2d(-31, -61, Math.toRadians(270));
-        //idk if this will cause issues!!!
-        double angleOffset = 2;
-        //i dont know if these two lines below need to be here ESP initCAM
-        //initCam(); try adding this in if doesnt work
-        //line 32 may have actually been the issue pls
+
         drive.setPoseEstimate(startPose);
-        //left ------------------------------------------------------------------
-        TrajectorySequence left = drive.trajectorySequenceBuilder(startPose)
-
-                // this aligns to tape
-                .lineToConstantHeading(new Vector2d(-37,-52))
-
-                .addDisplacementMarker(() -> {
-                    // init all transfer stuff
-                    bot.setArmPosition(armState.init, armExtensionState.extending);
-                    bot.setWristPosition(wristState.init);
-                    bot.setLidPosition(lidState.close);
-
-                })
-
-                // pushes to tape
-                .lineToConstantHeading(new Vector2d(-38, -44))
-
-                // going back to not mess pixel up
-                .lineToConstantHeading(new Vector2d(-38, -50))
-                // back up and move towards center
-                .lineToConstantHeading(new Vector2d(-32,-50))
-
-                // go to gate level & face outtaking
-                .lineToLinearHeading(new Pose2d(-32,-12, Math.toRadians(180)))
-
-                // stopping after going under gate
-                .lineToConstantHeading(new Vector2d(45,-12))
-
-                // go under gate
-                .lineToConstantHeading(new Vector2d(45,-55))
-
-                // set all transfer to outtake states
-                .addDisplacementMarker( () -> {
-                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
-                   bot.setWristPosition(wristState.outtaking);
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
-                })
-
-                // go to backboard
-                .waitSeconds(.25)
-                .lineToConstantHeading(new Vector2d(61, -23))
-
-                // score!
-                .addDisplacementMarker(() -> {
-                bot.setLidState(lidState.open);
-                })
-                .waitSeconds(.25)
-
-                // back up from board
-                .lineToConstantHeading(new Vector2d(50,-23))
-
-                // set states for tele op
-                .addDisplacementMarker(() -> {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
-                    bot.setArmPosition(armState.init, armExtensionState.extending);
-                    bot.setWristPosition(wristState.init);
-                })
-
-                // park
-                .lineToLinearHeading(new Pose2d(50 ,-15, Math.toRadians(90)))
-                .lineToConstantHeading(new Vector2d(55,-15))
-
-                .build();
-
-
-        //center ------------------------------------------------------------------
-        TrajectorySequence center = drive.trajectorySequenceBuilder(startPose)
-
-                // going forward & little left
-                .lineToConstantHeading(new Vector2d(-26,-52))
-
-                .addDisplacementMarker(() -> {
-                // init all transfer stuff
-                    bot.setWristState(wristState.init);
-                    bot.setArmPosition(armState.init, armExtensionState.extending);
-                    bot.setLidState(lidState.close);
-                })
-
-                // to center tape to push pixel
-                .lineToConstantHeading(new Vector2d(-26, -36))
-
-                // Backing up and aligning with backboard
-                .lineToConstantHeading(new Vector2d(-26  ,-42))
-
-                // turning to face backboard & moving towards backboard
-                .lineToLinearHeading(new Pose2d(-34,-42, Math.toRadians(180)))
-
-                // going to level with gate
-                .lineToConstantHeading(new Vector2d(-34 , -12))
-
-                // stopping after going under gate
-                .lineToConstantHeading(new Vector2d(45,-12))
-
-                // all transfer set to outtake
-                .addDisplacementMarker( () -> {
-                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
-                    bot.setWristPosition(wristState.outtaking);
-                })
-                // wait a second so it finishes outtake setup
-                .waitSeconds(.25)
-
-                // going to backboard
-                .lineToConstantHeading(new Vector2d(61,-29))
-
-                // open up the box
-                .addDisplacementMarker( () -> {
-                 bot.setLidState(lidState.open);
-                })
-
-                // back up from backboard
-                .lineToConstantHeading(new Vector2d(50,-31))
-
-                // prepare states for tele op
-                .addDisplacementMarker(() -> {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
-                    bot.setArmPosition(armState.init, armExtensionState.extending);
-                    bot.setWristPosition(wristState.init);
-                })
-
-                // parking
-                .lineToLinearHeading(new Pose2d(50 ,-15, Math.toRadians(90)))
-                .lineToConstantHeading(new Vector2d(55,-15))
-
-                .build();
-
-
-        //right ------------------------------------------------------------------
-        TrajectorySequence right = drive.trajectorySequenceBuilder(startPose)
-
-                // move left a lil
-                .lineToConstantHeading(new Vector2d(-36,-55))
-
-                // set all transfer states to init
-                .addDisplacementMarker(() -> {
-                    bot.setWristState(wristState.init);
-                    bot.setArmPosition(armState.init, armExtensionState.extending);
-                    bot.setLidState(lidState.close);
-                })
-
-                // move right towards tape
-                .lineToConstantHeading(new Vector2d(-32, -55))
-
-                // turn robot & go up next to tape
-                .lineToLinearHeading(new Pose2d(-32,-29, Math.toRadians(180)))
-
-                // score pixel on tape (untested)
-                .lineToConstantHeading(new Vector2d(-24,-29))
-
-                //move away from tape to not mess it up
-
-                .lineToConstantHeading(new Vector2d(-34,-29))
-                // move to truss
-
-                .lineToConstantHeading(new Vector2d(-34,-12))
-
-
-                //move to close side
-                .lineToConstantHeading(new Vector2d(45,-12))
-
-                // set all transfer to outtaking
-                .addDisplacementMarker( () -> {
-                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
-                    bot.setWristPosition(wristState.outtaking);
-                })
-
-                // go to backboard
-                .lineToConstantHeading(new Vector2d(62, -35.5))
-
-                // wait & then open up lid and score
-                .waitSeconds(.25)
-                .addDisplacementMarker(() -> {
-                bot.setLidPosition(lidState.open);
-
-                })
-
-                // back up to start parking
-                .lineToConstantHeading(new Vector2d(50,-38))
-
-                // set transfer to teleop ready
-                .addDisplacementMarker(() -> {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
-                    bot.setArmPosition(armState.init, armExtensionState.extending);
-                    bot.setWristPosition(wristState.init);
-                })
-
-                // head to park zone
-                .lineToConstantHeading(new Vector2d(55, -33))
-
-                // turn & park 
-                .lineToLinearHeading(new Pose2d(50 ,-15, Math.toRadians(90)))
-                .lineToConstantHeading(new Vector2d(55,-15))
-
-                .build();
-
-
-        //waitForStart();
-        //if (isStopRequested())
-        //drive.followTrajectorySequence(right);
-
-        //camera initialization -----------------------------------------------------
         initCam();
+
+        // ---------------------------- Left ---------------------------- //
+
+        TrajectorySequence left = drive.trajectorySequenceBuilder(startPose)
+                //Moving
+                .lineToConstantHeading(new Vector2d(-47,-52))
+
+                //Close lid
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.close);
+                })
+
+                //Push to tape
+                .lineToConstantHeading(new Vector2d(-47, -44))
+                //Move away from tape
+                .lineToConstantHeading(new Vector2d(-47, -50))
+                //Move to center
+                .lineToConstantHeading(new Vector2d(-33.5,-50))
+                //Align with gate
+                .lineToLinearHeading(new Pose2d(-33.5,-12, Math.toRadians(180)))
+                //Pass through gate
+                .lineToConstantHeading(new Vector2d(40,-12))
+                //Lining up in front of back board
+                .lineToConstantHeading(new Vector2d(35,-30))
+
+                //Set slides, arm, and wrist to outtake position
+                .addDisplacementMarker( () -> {
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
+                })
+
+                .waitSeconds(.25)
+
+                //Lining up with back board
+                .lineToConstantHeading(new Vector2d(53, -30))
+
+                //Score
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.open);
+                })
+
+                .waitSeconds(.5)
+
+                //Move slides to score
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT,extensionState.extending);
+                })
+
+                //Move in front of back board
+                .lineToConstantHeading(new Vector2d(48,-30))
+
+                //Set to initialization position
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.intaking);
+                })
+
+                //Move closer to parking position
+                .lineToConstantHeading(new Vector2d(45, -30))
+                //Rotate to parking position
+                .lineToLinearHeading(new Pose2d(46 ,-15, Math.toRadians(90)))
+                //Move in front of parking position
+                .lineToConstantHeading(new Vector2d(45, -15))
+                //Park
+                .lineToConstantHeading(new Vector2d(52,-16))
+
+                .build();
+
+        // ---------------------------- Center ---------------------------- //
+
+        TrajectorySequence center = drive.trajectorySequenceBuilder(startPose)
+                //Initialization
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.close);
+                })
+
+                //Move away from wall
+                .lineToConstantHeading(new Vector2d(-34, -55))
+                .waitSeconds(.25)
+                //Push to tape
+                .lineToConstantHeading(new Vector2d(-34, -31))
+                //Move away from tape
+                .lineToConstantHeading(new Vector2d(-34,-39))
+                //Move left of tape
+                .lineToConstantHeading(new Vector2d(-38,-42))
+                //Moving to gate
+                .lineToConstantHeading(new Vector2d(-47,-42))
+                //Lining up with gate
+                .lineToLinearHeading(new Pose2d(-48,-12,Math.toRadians(180)))
+                //Pass through gate
+                .lineToConstantHeading(new Vector2d(39, -12))
+
+                //Set slides, arm, and wrist to outtake position
+                .addDisplacementMarker( () -> {
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
+                })
+
+                //Lining up in front of back board
+                .lineToConstantHeading(new Vector2d(40, -29))
+                //Lining up with back board
+                .lineToConstantHeading(new Vector2d(52, -29))
+
+                .waitSeconds(.5)
+
+                //Score
+                .addDisplacementMarker( () -> {
+                    bot.setLidPosition(lidState.open);
+                })
+
+                .waitSeconds(1)
+
+                //Move slides to score
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
+                })
+
+                //Move in front of back board
+                .lineToConstantHeading(new Vector2d(40, -29))
+
+                //Set to initialization position
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.intaking);
+                })
+
+                .lineToConstantHeading(new Vector2d(44,-39))
+                //Move closer to park position
+                .lineToLinearHeading(new Pose2d(44 ,-15, Math.toRadians(90)))
+                //Rotate to park position
+                .lineToConstantHeading(new Vector2d(45, -16))
+                //Park
+                .lineToConstantHeading(new Vector2d(52,-16))
+
+                .build();
+
+        // ---------------------------- Right ---------------------------- //
+
+        TrajectorySequence right = drive.trajectorySequenceBuilder(startPose)
+                //Initialization
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.close);
+                })
+
+                //Move away from wall
+                .lineToConstantHeading(new Vector2d(-34, -55))
+                .waitSeconds(.25)
+                //Push to tape
+                .lineToLinearHeading(new Pose2d(-32,-37,Math.toRadians(210)))
+                //Move away from tape
+                .lineToLinearHeading(new Pose2d(-34,-39,Math.toRadians(210)))
+                //Move left of tape
+                .lineToLinearHeading(new Pose2d(-45,-33,Math.toRadians(270)))
+                //Move behind gate
+                .lineToLinearHeading(new Pose2d(-45,-14,Math.toRadians(180)))
+                //Pass through gate
+                .lineToConstantHeading(new Vector2d(39, -14))
+
+                //Set slides, arm, and wrist to outtake position
+                .addDisplacementMarker( () -> {
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
+                })
+
+                //Lining up in front of back board
+                .lineToConstantHeading(new Vector2d(40, -37))
+                //Lining up with back board
+                .lineToConstantHeading(new Vector2d(52, -37))
+                .waitSeconds(.25)
+
+                //Score
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.open);
+                })
+
+                .waitSeconds(.5)
+
+                //Move slides to score
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
+                })
+
+                //Move in front of back board
+                .lineToConstantHeading(new Vector2d(40,-43))
+
+                //Set to initialization position
+                .addDisplacementMarker(() -> {
+                    bot.setWristPosition(wristState.intaking);
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                })
+
+                //Move closer to park position
+                .lineToConstantHeading(new Vector2d(40,-39))
+                //Rotate to park position
+                .lineToLinearHeading(new Pose2d(44 ,-12, Math.toRadians(90)))
+                //Move in front of park position
+                .lineToConstantHeading(new Vector2d(45, -12))
+                //Park
+                .lineToConstantHeading(new Vector2d(52,-12))
+
+                .build();
+
+        // ---------------------------- Camera Initialization ---------------------------- //
+
         waitForStart();
         camera.stopStreaming();
         if (isStopRequested()) return;
@@ -252,8 +256,7 @@ public class longRed extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                
-                
+
                 drive.followTrajectorySequence(left);
 
                 break;
@@ -265,8 +268,7 @@ public class longRed extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                
-                
+
                 drive.followTrajectorySequence(right);
 
                 break;
@@ -278,8 +280,7 @@ public class longRed extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
-                
-                
+
                 drive.followTrajectorySequence(center);
 
                 break;
@@ -287,7 +288,6 @@ public class longRed extends LinearOpMode {
     }
 
     private void initCam() {
-
         //This line retrieves the resource identifier for the camera monitor view. The camera monitor view is typically used to display the camera feed
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
 
@@ -326,4 +326,3 @@ public class longRed extends LinearOpMode {
         });
     }
 }
-

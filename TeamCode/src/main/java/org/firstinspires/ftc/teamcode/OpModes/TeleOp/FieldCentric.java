@@ -127,7 +127,7 @@ public class FieldCentric extends OpMode {
 //                bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
 //            }
 //        }
-//
+//////
 //        if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
 //            bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
 //            bot.setIntakeSlideState(intakeSlidesState.STATION);
@@ -137,7 +137,7 @@ public class FieldCentric extends OpMode {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
                 bot.setActiveIntakePosition(activeIntakeState.inactive);
                 bot.setActiveIntakeState(activeIntakeState.inactive);
-            } else {
+            } else if(bot.getActiveIntakeState() != null && (bot.getOuttakeState()).equals(outtakeSlidesState.STATION) && (bot.getArmState()).equals(armState.intaking) && (bot.getWristState()).equals(wristState.intaking)) {
                 bot.setActiveIntakePosition(activeIntakeState.active);
                 bot.setActiveIntakeState(activeIntakeState.active);
             }
@@ -293,13 +293,13 @@ public class FieldCentric extends OpMode {
 
         if(operator.getRightY()> .1){
 
-            bot.outtakeSlide.setLeftOuttakeSlidePosition((int)bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int)(operator.getRightY()*7.5));
-            bot.outtakeSlide.setRightouttakeSlidePosition((int)bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int)(operator.getRightY()*7.5));
+            bot.outtakeSlide.setLeftOuttakeSlidePosition((int)bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int)(operator.getRightY()*10));
+            bot.outtakeSlide.setRightouttakeSlidePosition((int)bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int)(operator.getRightY()*10));
         }
         if(operator.getRightY()< -.1){
 
-            bot.outtakeSlide.setLeftOuttakeSlidePosition((int)bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int)(operator.getRightY()*7.5));
-            bot.outtakeSlide.setRightouttakeSlidePosition((int)bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int)(operator.getRightY()*7.5));
+            bot.outtakeSlide.setLeftOuttakeSlidePosition((int)bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int)(operator.getRightY()*10));
+            bot.outtakeSlide.setRightouttakeSlidePosition((int)bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int)(operator.getRightY()*10));
         }
 
 
