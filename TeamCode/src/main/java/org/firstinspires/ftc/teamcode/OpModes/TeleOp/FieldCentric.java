@@ -39,6 +39,7 @@ public class FieldCentric extends OpMode {
         telemetry.update();
 
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
+        bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
 
 
         bot.setWristPosition(wristState.intaking);
@@ -137,7 +138,7 @@ public class FieldCentric extends OpMode {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
                 bot.setActiveIntakePosition(activeIntakeState.inactive);
                 bot.setActiveIntakeState(activeIntakeState.inactive);
-            } else if(bot.getActiveIntakeState() != null && (bot.getOuttakeState()).equals(outtakeSlidesState.STATION) && (bot.getArmState()).equals(armState.intaking) && (bot.getWristState()).equals(wristState.intaking)) {
+            } else if((bot.getOuttakeState().equals(outtakeSlidesState.STATION) && (bot.getArmState()).equals(armState.intaking) && (bot.getWristState()).equals(wristState.intaking))) {
                 bot.setActiveIntakePosition(activeIntakeState.active);
                 bot.setActiveIntakeState(activeIntakeState.active);
             }

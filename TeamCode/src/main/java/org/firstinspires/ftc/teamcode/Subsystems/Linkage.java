@@ -40,4 +40,7 @@ public class Linkage
     {
         return linkageServo.getPosition();
     }
+    public void setLinkageCustomPosition(double position){
+        linkageServo.setPosition(position);
+    }
 }

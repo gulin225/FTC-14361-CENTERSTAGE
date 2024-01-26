@@ -76,7 +76,7 @@ public class closeRed extends LinearOpMode {
                     bot.setWristPosition(wristState.intaking);
                 })
 
-                .lineToLinearHeading(new Pose2d(50 ,-63, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d(50 ,-63, Math.toRadians(90)))
                 .build();
 
         //center ------------------------------------------------------------------
