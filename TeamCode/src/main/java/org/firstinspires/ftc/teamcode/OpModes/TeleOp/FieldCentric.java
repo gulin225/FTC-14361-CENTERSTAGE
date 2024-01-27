@@ -25,7 +25,7 @@ public class FieldCentric extends OpMode {
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Robot bot;
-    public int outtakeSlideCount = 0;
+    public int outtakeSlideCount = 10;
 
     @Override
     public void init() {
@@ -36,7 +36,7 @@ public class FieldCentric extends OpMode {
 
         telemetry.addLine("It's goobin time");
         telemetry.addLine("Time taken: " + getRuntime() + " seconds.");
-        telemetry.update();
+        //telemetry.update();
 
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
         bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);

@@ -43,7 +43,7 @@ public class Robot {
     {
         this.telemetry = telemetry;
 
-        driveTrain = new Mecanum(hardwareMap);
+        driveTrain = new Mecanum(hardwareMap, telemetry);
         linkage = new Linkage(hardwareMap);
 //        claw = new Claw(hardwareMap);
         wrist = new Wrist(hardwareMap);
