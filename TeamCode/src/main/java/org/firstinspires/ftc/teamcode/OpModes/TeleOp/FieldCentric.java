@@ -243,6 +243,7 @@ public class FieldCentric extends OpMode {
 
             bot.setWristState(wristState.intaking);
             bot.setWristPosition(wristState.intaking);
+            bot.setLidPosition(lidState.open);
 
             bot.setArmPosition(armState.intaking, armExtensionState.extending);
             bot.setArmState(armState.intaking);
@@ -253,7 +254,7 @@ public class FieldCentric extends OpMode {
             //   bot.setWristPosition(wristState.normal);
 
             if (bot.getArmState() != null && bot.getArmState().equals(armState.outtaking)) {
-                bot.setLidPosition(lidState.open);
+
                 bot.setWristState(wristState.intaking);
                 bot.setWristPosition(wristState.intaking);
             }
@@ -263,7 +264,7 @@ public class FieldCentric extends OpMode {
                // bot.setLidPosition(lidState.close);
                 bot.setArmPosition(armState.init, armExtensionState.extending);
                 bot.setArmState(armState.init);
-
+                bot.setLidPosition(lidState.open);
 
             }
 
