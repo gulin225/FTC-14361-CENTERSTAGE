@@ -138,7 +138,8 @@ public class FieldCentric extends OpMode {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
                 bot.setActiveIntakePosition(activeIntakeState.inactive);
                 bot.setActiveIntakeState(activeIntakeState.inactive);
-            } else if((bot.getOuttakeState().equals(outtakeSlidesState.STATION) && (bot.getArmState()).equals(armState.intaking) && (bot.getWristState()).equals(wristState.intaking))) {
+            } else if((bot.getOuttakeState().equals(outtakeSlidesState.STATION) && (bot.getArmState()).equals(armState.intaking) && (bot.getWristState()).equals(wristState.intaking)))
+            {
                 bot.setActiveIntakePosition(activeIntakeState.active);
                 bot.setActiveIntakeState(activeIntakeState.active);
             }
