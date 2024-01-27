@@ -59,7 +59,7 @@ public class Mecanum
        // double error = angleWrap(Math.toRadians(90) - imu.getAngularOrientation().firstAngle);
        // rx = .1*(Math.toRadians(90)-imu.getAngularOrientation().firstAngle);
        // rx = gamepad1.getRightX(); // 0.01 * (des_angle - curr_angle)
-        double error = 0angleWrap(Math.toRadians(90) - imu.getAngularOrientation().firstAngle);
+        double error = angleWrap(Math.toRadians(90) - imu.getAngularOrientation().firstAngle);
 
         integralSum += error * timer.seconds();
         double derivative = -(angleWrap(error - lastError)) / (timer.seconds());
