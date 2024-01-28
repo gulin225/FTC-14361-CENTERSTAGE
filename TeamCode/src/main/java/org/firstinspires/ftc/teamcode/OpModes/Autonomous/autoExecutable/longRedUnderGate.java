@@ -16,7 +16,8 @@ import org.firstinspires.ftc.teamcode.Commands.*;
 import org.firstinspires.ftc.teamcode.Subsystems.*;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
 
-@Autonomous(name = "longRedUnderGate", group = "Auto")
+@Autonomous(name = "dontUse" +
+        "", group = "Auto")
 public class longRedUnderGate extends LinearOpMode {
     OpenCvCamera camera;
     HSVRedDetection redDetection;

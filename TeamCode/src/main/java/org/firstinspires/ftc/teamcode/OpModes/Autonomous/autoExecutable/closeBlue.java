@@ -98,24 +98,24 @@ public class closeBlue extends LinearOpMode {
                 .waitSeconds(1)
                 .lineToConstantHeading(new Vector2d(10, 33.5))
 
-                .lineToConstantHeading(new Vector2d(10, 38))
-                .lineToLinearHeading(new Pose2d(40 ,38, Math.toRadians(180)))
+                .lineToConstantHeading(new Vector2d(10, 35))
+                .lineToLinearHeading(new Pose2d(40 ,35, Math.toRadians(180)))
                 .addDisplacementMarker( () -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
                   bot.setWristPosition(wristState.outtaking);
                 })
 
-                .lineToConstantHeading(new Vector2d(52,36))
+                .lineToConstantHeading(new Vector2d(52,35))
                 .addDisplacementMarker( () -> {
                     bot.setLidPosition(lidState.open);
                 })
                 .waitSeconds(.5)
-                .lineToConstantHeading(new Vector2d(51.8, 36))
+                .lineToConstantHeading(new Vector2d(51.8, 35))
                 .addDisplacementMarker( () -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
                 })
-                .lineToConstantHeading(new Vector2d(43, 36))
+                .lineToConstantHeading(new Vector2d(43, 35))
                 .addDisplacementMarker( () -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setArmPosition(armState.intaking, armExtensionState.extending);

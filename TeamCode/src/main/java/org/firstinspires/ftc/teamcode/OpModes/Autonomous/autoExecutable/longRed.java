@@ -114,7 +114,7 @@ public class longRed extends LinearOpMode {
                 .waitSeconds(.25)
                 //Push to tape
                 //Move away from tape
-                .lineToConstantHeading(new Vector2d(-40,-35))
+                .lineToConstantHeading(new Vector2d(-40,-33.75))
                 //Move left of tape
                 .lineToConstantHeading(new Vector2d(-40,-42))
                 .lineToLinearHeading(new Pose2d(-50,-42,Math.toRadians(180)))
@@ -133,9 +133,9 @@ public class longRed extends LinearOpMode {
                 })
 
                 //Lining up in front of back board
-                .lineToConstantHeading(new Vector2d(40, -29))
+                .lineToConstantHeading(new Vector2d(40, -30.5))
                 //Lining up with back board
-                .lineToConstantHeading(new Vector2d(51.2, -29))
+                .lineToConstantHeading(new Vector2d(51.2, -30.5))
 
 
 
@@ -144,7 +144,7 @@ public class longRed extends LinearOpMode {
                     bot.setLidPosition(lidState.open);
                 })
 
-                .lineToConstantHeading(new Vector2d(51.1, -29))
+                .lineToConstantHeading(new Vector2d(51.1, -30.5))
 
                 //Move slides to score
                 .addDisplacementMarker(() -> {
@@ -152,7 +152,7 @@ public class longRed extends LinearOpMode {
                 })
 
                 //Move in front of back board
-                .lineToConstantHeading(new Vector2d(40, -29))
+                .lineToConstantHeading(new Vector2d(40, -30.5))
 
                 //Set to initialization position
                 .addDisplacementMarker(() -> {
@@ -182,15 +182,13 @@ public class longRed extends LinearOpMode {
                 .lineToConstantHeading(new Vector2d(-34, -55))
 
                 //Push to tape
-                .lineToLinearHeading(new Pose2d(-30,-37,Math.toRadians(210)))
-                //Move away from tape
-                .lineToLinearHeading(new Pose2d(-31,-39,Math.toRadians(210)))
-                //Move left of tape
-                .lineToLinearHeading(new Pose2d(-47,-36,Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d(-36,-33,Math.toRadians(180)))
+                .lineToConstantHeading(new Vector2d(-34, -33))
+                .lineToConstantHeading(new Vector2d(-38, -33))
+                .lineToConstantHeading(new Vector2d(-47, -11))
                 //Move behind gate
-                .lineToLinearHeading(new Pose2d(-47,-10,Math.toRadians(180)))
-                //Pass through gate
-                .lineToConstantHeading(new Vector2d(39, -14))
+
+                .lineToConstantHeading(new Vector2d(39, -11))
 
                 //Set slides, arm, and wrist to outtake position
                 .addDisplacementMarker( () -> {
@@ -200,17 +198,16 @@ public class longRed extends LinearOpMode {
                 })
 
                 //Lining up in front of back board
-                .lineToConstantHeading(new Vector2d(40, -37))
+                .lineToConstantHeading(new Vector2d(46.5, -35.75))
                 //Lining up with back board
                 .lineToConstantHeading(new Vector2d(52, -37))
                 .waitSeconds(.25)
 
                 //Score
                 .addDisplacementMarker(() -> {
-                    bot.setLidPosition(lidState.open);
-                })
+                    bot.setLidPosition(lidState.open);             })
 
-                .lineToConstantHeading(new Vector2d(53, -37))
+                .lineToConstantHeading(new Vector2d(51.8, -36.75))
 
                 //Move slides to score
                 .addDisplacementMarker(() -> {
@@ -218,7 +215,7 @@ public class longRed extends LinearOpMode {
                 })
 
                 //Move in front of back board
-                .lineToConstantHeading(new Vector2d(40,-43))
+                .lineToConstantHeading(new Vector2d(40,-36.75))
 
                 //Set to initialization position
                 .addDisplacementMarker(() -> {
