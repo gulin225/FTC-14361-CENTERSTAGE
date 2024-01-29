@@ -36,6 +36,7 @@ public class FieldCentric extends OpMode {
 
         telemetry.addLine("It's goobin time");
         telemetry.addLine("Time taken: " + getRuntime() + " seconds.");
+
         telemetry.update();
 
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
@@ -83,6 +84,7 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("Right Arm Decimal Position: " + (1 - bot.arm.getRightArmPosition() / 360) + " decimal.");
         telemetry.addLine("Left Arm Position: " + bot.arm.getLeftArmPosition() + " ticks.");
         telemetry.addLine("Left Arm Decimal Position: " + (1 - bot.arm.getLeftArmPosition() / 360) + " decimal.");
+        telemetry.addLine("DIstance in CM" + bot.getDistanceSensor());
 //      telemetry.addLine("Intake Slide Encoder Tick Count " + intakeSlideCountSubstract);
         telemetry.update();
 

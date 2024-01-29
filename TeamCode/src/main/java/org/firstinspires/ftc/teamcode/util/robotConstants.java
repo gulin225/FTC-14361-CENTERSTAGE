@@ -80,7 +80,7 @@ public class robotConstants
     public static class Wrist
     {
         public static double outtaking = .19;
-        public static double intaking = .995;
+        public static double intaking = .965;
 //        public static double intaking = .79;
         public static double init = .65;
     }
@@ -94,16 +94,16 @@ public class robotConstants
 
     {
 
-        public static double intakingLeft = 0.02;
+        public static double intakingLeft = 0.000;
 
-        public static double intakingRight = 0.035;
+        public static double intakingRight = 0.037;
 
 
         public static double intakingInitLeft = .5;
 
         public static double intakingInitRight = .5;
 
-        public static double outtakingLeft = .565;
+        public static double outtakingLeft = .52;
         public static double outtakingRight = .53;
 
         public static double initLeft = .21;

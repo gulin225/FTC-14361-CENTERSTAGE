@@ -36,11 +36,11 @@ public class Robot {
     public slowDownState slowDownState;
     public Linkage linkage;
     public linkageState linkageState;
+    public distanceSensor distanceSensor;
 
     Telemetry telemetry;
 
-    public Robot(HardwareMap hardwareMap, Telemetry telemetry)
-    {
+    public Robot(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
 
         driveTrain = new Mecanum(hardwareMap);
@@ -53,6 +53,7 @@ public class Robot {
         activeIntake = new ActiveIntake(hardwareMap);
         lid = new Lid(hardwareMap);
         drone = new Drone(hardwareMap);
+        distanceSensor = new distanceSensor(hardwareMap);
     }
 
     // ---------------------------- IntakeSlide ---------------------------- //
@@ -98,80 +99,66 @@ public class Robot {
 
     // ---------------------------- OuttakeSlide ---------------------------- //
 
-    public void setOuttakeSlidePosition(outtakeSlidesState outtakeSlidesState, extensionState extensionState)
-    {
-        outtakeSlide.setOuttakeSlidePosition(extensionState,outtakeSlidesState);
+    public void setOuttakeSlidePosition(outtakeSlidesState outtakeSlidesState, extensionState extensionState) {
+        outtakeSlide.setOuttakeSlidePosition(extensionState, outtakeSlidesState);
         this.outtakeSlidesState = outtakeSlidesState;
     }
 
-    public outtakeSlidesState getOuttakeState()
-    {
+    public outtakeSlidesState getOuttakeState() {
         return outtakeSlidesState;
     }
 
-    public void setOuttakeSlideState(outtakeSlidesState outtakeSlidesState)
-    {
+    public void setOuttakeSlideState(outtakeSlidesState outtakeSlidesState) {
         this.outtakeSlidesState = outtakeSlidesState;
     }
 
-    public double getOuttakeLeftSlidePosition()
-    {
+    public double getOuttakeLeftSlidePosition() {
         return outtakeSlide.getLeftOuttakeSlideMotorPosition();
     }
 
-    public double getOuttakeRightSlidePosition()
-    {
+    public double getOuttakeRightSlidePosition() {
         return outtakeSlide.getRightOuttakeSlideMotorPosition();
     }
 
     // ---------------------------- Wrist ---------------------------- //
 
-    public void setWristPosition(wristState wristState)
-    {
+    public void setWristPosition(wristState wristState) {
         wrist.setWristPosition(wristState);
         this.wristState = wristState;
     }
 
-    public void setWristState(wristState wristState)
-    {
+    public void setWristState(wristState wristState) {
         this.wristState = wristState;
     }
 
-    public wristState getWristState()
-    {
+    public wristState getWristState() {
         return wristState;
     }
 
-    public double getWristPosition()
-    {
+    public double getWristPosition() {
         return wrist.getWristPosition();
     }
 
     // ---------------------------- Arm ---------------------------- //
 
-    public void setArmPosition(armState armState, armExtensionState armExtensionState)
-    {
+    public void setArmPosition(armState armState, armExtensionState armExtensionState) {
         arm.setArmPosition(armState, armExtensionState);
         this.armState = armState;
     }
 
-    public void setArmState(armState armState)
-    {
+    public void setArmState(armState armState) {
         this.armState = armState;
     }
 
-    public armState getArmState()
-    {
+    public armState getArmState() {
         return armState;
     }
 
-    public armExtensionState getArmExtensionState()
-    {
+    public armExtensionState getArmExtensionState() {
         return armExtensionState;
     }
 
-    public void setArmExtensionState(armExtensionState armExtensionState)
-    {
+    public void setArmExtensionState(armExtensionState armExtensionState) {
         this.armExtensionState = armExtensionState;
     }
 
@@ -234,84 +221,82 @@ public class Robot {
 
     // ---------------------------- ActiveIntake ---------------------------- //
 
-    public void setActiveIntakePosition(activeIntakeState activeIntakeState)
-    {
+    public void setActiveIntakePosition(activeIntakeState activeIntakeState) {
         activeIntake.setActiveIntakePosition(activeIntakeState);
         this.activeIntakeState = activeIntakeState;
     }
 
-    public activeIntakeState getActiveIntakeState()
-    {
+    public activeIntakeState getActiveIntakeState() {
         return activeIntakeState;
     }
 
-    public void setActiveIntakeState(activeIntakeState activeIntakeState)
-    {
+    public void setActiveIntakeState(activeIntakeState activeIntakeState) {
         this.activeIntakeState = activeIntakeState;
     }
 
     // ---------------------------- SlowDown ---------------------------- //
 
-    public slowDownState getSlowDownState()
-    {
+    public slowDownState getSlowDownState() {
         return slowDownState;
     }
 
-    public void setSlowDownState(slowDownState slowDownState)
-    {
+    public void setSlowDownState(slowDownState slowDownState) {
         this.slowDownState = slowDownState;
     }
 
     // ---------------------------- Drone ---------------------------- //
 
-    public void setDrone()
-    {
+    public void setDrone() {
         drone.resetDrone();
     }
 
-    public void launchDrone()
-    {
+    public void launchDrone() {
         drone.launch();
     }
 
     // ---------------------------- Linkage ---------------------------- //
 
-    public void setLinkagePosition(linkageState linkageState)
-    {
+    public void setLinkagePosition(linkageState linkageState) {
         linkage.setLinkagePosition(linkageState);
         this.linkageState = linkageState;
     }
 
-    public void setLinkageState(linkageState linkageState)
-    {
+    public void setLinkageState(linkageState linkageState) {
         this.linkageState = linkageState;
     }
 
-    public linkageState getLinkageState()
-    {
+    public linkageState getLinkageState() {
         return this.linkageState;
     }
 
-    public void getLinkagePosition()
-    {
+    public void getLinkagePosition() {
         linkage.getLinkagePosition();
     }
+
     //---------------------------- Lid ---------------------------- //
-    public void setLidState(lidState lidstate){
+    public void setLidState(lidState lidstate) {
 
         this.lidstate = lidstate;
     }
-    public void setLidPosition(lidState lidstate){
+
+    public void setLidPosition(lidState lidstate) {
         lid.setLidPosition(lidstate);
         this.lidstate = lidstate;
     }
-    public lidState getLidState(){
+
+    public lidState getLidState() {
         return lidstate;
     }
-    public void setLidCustomPosition(double position){
+
+    public void setLidCustomPosition(double position) {
         lid.setLidCustomPosition(position);
     }
-}
 
+//---------------------------- DistanceSensor ---------------------------- //
+
+    public double getDistanceSensor(){
+       return distanceSensor.getDistance();
+    }
+}
 
 
