@@ -18,6 +18,7 @@ public class Mecanum
     BNO055IMU imu;
     BNO055IMU.Parameters parameters;
 
+
     public Mecanum(HardwareMap hardwareMap)
     {
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
@@ -33,6 +34,8 @@ public class Mecanum
         parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
         imu.initialize(parameters);
+
+
     }
 
     public void drive(GamepadEx gamepad1)

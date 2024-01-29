@@ -37,6 +37,8 @@ public class Robot {
     public Linkage linkage;
     public linkageState linkageState;
 
+    // this is only diff- added VoltMecanum
+    public VoltMecanum voltMecanum;
     Telemetry telemetry;
 
     public Robot(HardwareMap hardwareMap, Telemetry telemetry)
@@ -44,6 +46,9 @@ public class Robot {
         this.telemetry = telemetry;
 
         driveTrain = new Mecanum(hardwareMap);
+
+        voltMecanum = new VoltMecanum(hardwareMap);
+
         linkage = new Linkage(hardwareMap);
 //        claw = new Claw(hardwareMap);
         wrist = new Wrist(hardwareMap);
