@@ -292,9 +292,9 @@ public class Robot {
 
 //---------------------------- DistanceSensor ---------------------------- //
 
-    public double getDistanceSensor(){
-       return distanceSensor.getDistance();
-    }
+//    public double getDistanceSensor(){
+//       return distanceSensor.getDistance();
+//    }
 }
 
 
