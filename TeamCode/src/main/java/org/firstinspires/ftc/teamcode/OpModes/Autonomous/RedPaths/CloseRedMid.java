@@ -18,7 +18,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.HSVRedDetection;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.openftc.easyopencv.OpenCvCamera;
 
-@Autonomous(name = "CloseRedMid")
 public class CloseRedMid extends LinearOpMode {
     Robot bot;
     OpenCvCamera camera;

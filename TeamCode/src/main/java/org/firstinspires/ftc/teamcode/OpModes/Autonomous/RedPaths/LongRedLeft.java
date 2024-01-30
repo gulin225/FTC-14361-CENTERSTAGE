@@ -14,7 +14,6 @@ import org.firstinspires.ftc.teamcode.OpModes.Autonomous.trajectorysequence.Traj
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
 
-@Autonomous(name = "LongRedLeft")
 public class LongRedLeft extends LinearOpMode
 {
 

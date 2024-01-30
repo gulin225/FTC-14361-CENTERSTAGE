@@ -14,7 +14,6 @@ import org.firstinspires.ftc.teamcode.OpModes.Autonomous.trajectorysequence.Traj
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
 
-@Autonomous(name = "LongBlueRight")
 public class LongBlueRight extends LinearOpMode {
     Robot bot;
     Pose2d startPose = new Pose2d(-31, 61, Math.toRadians(90));

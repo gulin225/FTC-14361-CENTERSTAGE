@@ -13,14 +13,12 @@ import org.firstinspires.ftc.teamcode.Commands.slowDownState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Commands.armState;
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
-import org.firstinspires.ftc.teamcode.util.robotConstants;
 
 public class Robot {
     //public IntakeSlide intakeSlide;
     public OuttakeSlide outtakeSlide;
     public Mecanum driveTrain;
     public Wrist wrist;
-    public Claw claw;
     public Arm arm;
     public Drone drone;
     public outtakeSlidesState outtakeSlidesState;
@@ -36,7 +34,7 @@ public class Robot {
     public slowDownState slowDownState;
     public Linkage linkage;
     public linkageState linkageState;
-    public distanceSensor distanceSensor;
+    public DistanceSensor distanceSensor;
 
     Telemetry telemetry;
 
@@ -53,7 +51,7 @@ public class Robot {
         activeIntake = new ActiveIntake(hardwareMap);
         lid = new Lid(hardwareMap);
         drone = new Drone(hardwareMap);
-        distanceSensor = new distanceSensor(hardwareMap);
+        distanceSensor = new DistanceSensor(hardwareMap);
     }
 
     // ---------------------------- IntakeSlide ---------------------------- //

@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpModes.Autonomous.autoExecutable;
+package org.firstinspires.ftc.teamcode.OpModes.Autonomous.RedPaths;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;

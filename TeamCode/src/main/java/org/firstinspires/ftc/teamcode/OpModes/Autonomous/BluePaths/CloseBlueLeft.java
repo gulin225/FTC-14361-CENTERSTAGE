@@ -18,7 +18,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.HSVRedDetection;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.openftc.easyopencv.OpenCvCamera;
 
-@Autonomous(name = "CloseBlueLeft")
 public class CloseBlueLeft extends LinearOpMode {
     Robot bot;
     OpenCvCamera camera;
