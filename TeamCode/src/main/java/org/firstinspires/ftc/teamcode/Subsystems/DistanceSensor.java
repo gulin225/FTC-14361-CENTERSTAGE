@@ -10,73 +10,115 @@ public class DistanceSensor
 {
     com.qualcomm.robotcore.hardware.DistanceSensor distanceSensor;
 
-    int yPose = -36;
-    int xPose = -48;
+    boolean redSide = false;
+    boolean blueSide = false;
+
+    double directionOffset = -1;
+
+    int stackYPose = 36;
+    int stackXPose = 48;
+    int robotFrontBackOffset = 9;
+    int robotSideOffset = 9;
 
     public  DistanceSensor(HardwareMap hardwareMap)
     {
         distanceSensor = hardwareMap.get(com.qualcomm.robotcore.hardware.DistanceSensor.class, "forwardDistanceSensor");
     }
 
-
-
     // Remember to account for the distance between the detector and the center of the robot.
     // This will effect the x and Y.
     // This can be changed after the sensor positions are found.2
 
-
-
-
-    public double getRedLeftStackDistance()
+    public double getLeftStackDistance()
     {
-        double currentLeftdistance = -distanceSensor.getDistance(DistanceUnit.INCH);
-        double diff = 0;
+        double yOffset = 0;
 
-        if(currentLeftdistance < yPose)
+        if(redSide == (true))
         {
-            diff = currentLeftdistance + (-1 * yPose);
-            return diff;
+            double currentLeftdistance = -(72 - distanceSensor.getDistance(DistanceUnit.INCH)) + robotSideOffset;
+
+            if(currentLeftdistance < stackYPose * directionOffset)
+            {
+                yOffset = -(currentLeftdistance + stackYPose);
+                return yOffset;
+            }
+            else if(currentLeftdistance > stackYPose * directionOffset)
+            {
+                yOffset = currentLeftdistance + stackYPose;
+                return yOffset;
+            }
         }
-        else if(currentLeftdistance > yPose)
-        {
-            diff = (-1 * currentLeftdistance) + yPose;
-            return diff;
-        }
-        return diff;
+       return yOffset;
     }
 
-    public double getRedRightStackDistance()
+    public double getRightStackDistance()
     {
-        double currentLeftdistance = distanceSensor.getDistance(DistanceUnit.INCH);
-        double diff = 0;
+        double yOffset = 0;
 
-        return diff;
+        if(redSide == (true))
+        {
+            double currentRightdistance = (72 - distanceSensor.getDistance(DistanceUnit.INCH)) - robotSideOffset;
+
+            if(currentRightdistance < stackYPose)
+            {
+                yOffset = stackYPose - currentRightdistance;
+                return yOffset;
+            }
+            else if(currentRightdistance > stackYPose)
+            {
+                yOffset = -(currentRightdistance - stackYPose);
+                return yOffset;
+            }
+        }
+        return yOffset;
     }
 
-    public double getRedFrontStackDistance()
+    public double getFrontStackDistance()
     {
-        double currentLeftdistance = -distanceSensor.getDistance(DistanceUnit.INCH);
-        double diff = 0;
+        double xOffset = 0;
 
-        if(currentLeftdistance < yPose)
+        double currentFrontdistance = - (72 - distanceSensor.getDistance(DistanceUnit.INCH)) + robotFrontBackOffset;
+
+        if(currentFrontdistance < stackXPose)
         {
-            diff = currentLeftdistance + (-1 * yPose);
-            return diff;
+            xOffset = -(currentFrontdistance + stackXPose);
+            return xOffset;
         }
-        else if(currentLeftdistance > yPose)
+        else if(currentFrontdistance > stackXPose)
         {
-            diff = (-1 * currentLeftdistance) + yPose;
-            return diff;
+            xOffset = stackXPose - currentFrontdistance;
+            return xOffset;
         }
-        return diff;
+        return xOffset;
     }
 
-    public double getRedBackStackDistance()
+    public void setRedAlliance()
     {
-        double currentLeftdistance = distanceSensor.getDistance(DistanceUnit.INCH);
-        double diff = 0;
+        if(redSide = false)
+        {
+            redSide = true;
+        }
+        else
+        {
+            redSide = false;
+        }
+    }
 
-        return diff;
+    public void setBlueAlliance()
+    {
+        if(blueSide = false)
+        {
+            blueSide = true;
+        }
+        else
+        {
+            blueSide = false;
+        }
+    }
+
+    public double getDistance()
+    {
+        return distanceSensor.getDistance(DistanceUnit.INCH);
     }
 }
 

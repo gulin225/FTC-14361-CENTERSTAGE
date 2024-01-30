@@ -45,6 +45,11 @@ public class longRedStackDistanceDetect extends LinearOpMode {
 
         Pose2d tapePose = new Pose2d(-48, -36, Math.toRadians(180));
 
+        double leftOffsetStack = 0.0;
+        double rightOffsetStack = 0.0;
+        double frontOffsetStack = 0.0;
+        double backOffsetStack = 0.0;
+
         distanceSensor = new DistanceSensor(hardwareMap);
 
         drive.setPoseEstimate(startPose);
