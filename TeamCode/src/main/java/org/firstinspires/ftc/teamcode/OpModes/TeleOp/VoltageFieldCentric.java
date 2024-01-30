@@ -2,7 +2,9 @@ package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
@@ -18,6 +20,7 @@ import org.firstinspires.ftc.teamcode.Commands.armState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.util.robotConstants;
+@TeleOp(name = "Voltage Field Centric", group = "Testing")
 public class VoltageFieldCentric extends OpMode{
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
@@ -86,6 +89,9 @@ public class VoltageFieldCentric extends OpMode{
 
         telemetry.addLine("Voltage Current: " + bot.voltMecanum.getBatteryVoltage());
         telemetry.addLine("Battery Multiplier: " + bot.voltMecanum.getBatteryMult());
+        telemetry.addLine("Wheel FL: " + bot.voltMecanum.getFLSpeed() + "Wheel FR: " + bot.voltMecanum.getFRSpeed());
+        telemetry.addLine("Wheel BL: " + bot.voltMecanum.getBLSpeed() + "Wheel BR: " + bot.voltMecanum.getBRSpeed());
+
 
         telemetry.update();
 

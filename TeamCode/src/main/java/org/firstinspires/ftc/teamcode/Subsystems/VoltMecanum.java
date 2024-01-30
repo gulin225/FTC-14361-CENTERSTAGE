@@ -82,6 +82,22 @@ public class VoltMecanum
         adjustVoltMult();
         return voltMult;
     }
+
+    public double getFLSpeed(){
+        return leftFront.getVelocity();
+    }
+
+    public double getBLSpeed(){
+        return leftRear.getVelocity();
+    }
+
+    public double getFRSpeed(){
+        return rightFront.getVelocity();
+    }
+
+    public double getBRSpeed(){
+        return rightRear.getVelocity();
+    }
     public void adjustVoltMult(){
 
         if(getBatteryVoltage() >= 14 )
