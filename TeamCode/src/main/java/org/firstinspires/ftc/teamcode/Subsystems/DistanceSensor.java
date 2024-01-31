@@ -18,11 +18,13 @@ public class DistanceSensor
     int stackYPose = 36;
     int stackXPose = 48;
     int robotFrontBackOffset = 9;
-    int robotSideOffset = 9;
+    int robotSideOffset = 8;
 
     public  DistanceSensor(HardwareMap hardwareMap)
     {
-        distanceSensor = hardwareMap.get(com.qualcomm.robotcore.hardware.DistanceSensor.class, "forwardDistanceSensor");
+        //distanceSensor = hardwareMap.get(com.qualcomm.robotcore.hardware.DistanceSensor.class, "forwardDistanceSensor");
+        distanceSensor = hardwareMap.get(com.qualcomm.robotcore.hardware.DistanceSensor.class, "leftDistanceSensor");
+        distanceSensor = hardwareMap.get(com.qualcomm.robotcore.hardware.DistanceSensor.class, "rightDistanceSensor");
     }
 
     // Remember to account for the distance between the detector and the center of the robot.
