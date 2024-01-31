@@ -147,6 +147,7 @@ public class LongCenterRedStack extends LinearOpMode {
                     bot.outtakeSlide.setPosition(800);
 
                 })
+
                 .addDisplacementMarker( () -> {
                     bot.setLidPosition(lidState.open);
                     bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
@@ -169,6 +170,7 @@ public class LongCenterRedStack extends LinearOpMode {
         drive.followTrajectorySequence(toBackboard);
         //drive.followTrajectorySequence(leaveBackBoard);
         drive.followTrajectorySequence(toStack);
+        
         drive.followTrajectorySequence(toBackboardFromTruss);
 
    //     drive.followTrajectorySequence(center);

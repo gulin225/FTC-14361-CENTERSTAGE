@@ -29,17 +29,17 @@ public class DistanceSensor
 
     public double getRedLeftStackDistance()
     {
-        double currentLeftdistance = -distanceSensor.getDistance(DistanceUnit.INCH);
+        double currentLeftDistance = -distanceSensor.getDistance(DistanceUnit.INCH);
         double diff = 0;
 
-        if(currentLeftdistance < yPose)
+        if(currentLeftDistance < yPose)
         {
-            diff = currentLeftdistance + (-1 * yPose);
+            diff = currentLeftDistance + (-1 * yPose);
             return diff;
         }
-        else if(currentLeftdistance > yPose)
+        else if(currentLeftDistance > yPose)
         {
-            diff = (-1 * currentLeftdistance) + yPose;
+            diff = (-1 * currentLeftDistance) + yPose;
             return diff;
         }
         return diff;
