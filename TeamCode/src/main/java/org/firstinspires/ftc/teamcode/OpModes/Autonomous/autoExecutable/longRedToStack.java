@@ -163,7 +163,6 @@ public class longRedToStack extends LinearOpMode {
 //                //Lining up with back board
                 .lineToConstantHeading(new Vector2d(53, -31))
                 //Score
-                .waitSeconds(0.5)
                 .addDisplacementMarker( () -> {
                     bot.setLidPosition(lidState.open);
                 })
@@ -194,7 +193,7 @@ public class longRedToStack extends LinearOpMode {
                     bot.linkage.setLinkageCustomPosition(.88);
                 })
                 .turn(Math.toRadians(-35))
-                .splineToConstantHeading(new Vector2d(-57.5,-29), Math.toRadians(180))
+                .splineToConstantHeading(new Vector2d(-59,-29), Math.toRadians(180))
                 //  .splineToLinearHeading(new Pose2d(-55,-30,Math.toRadians(135)), Math.toRadians(135))
                 .turn(Math.toRadians(35))
 
@@ -206,7 +205,27 @@ public class longRedToStack extends LinearOpMode {
 
                 .forward(3)
 
-                .lineToLinearHeading(new Pose2d(-55,-29, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d(-43,-55, Math.toRadians(180)))
+
+                .addDisplacementMarker( () -> {
+                    bot.setActiveIntakePosition(activeIntakeState.inactive);
+                    bot.setLidPosition(lidState.close);
+                })
+
+                .lineToLinearHeading(new Pose2d(40, -51, Math.toRadians(180)))
+
+                .addDisplacementMarker( () -> {
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                    bot.outtakeSlide.setPosition(800);
+                })
+
+                .lineToConstantHeading(new Vector2d(53, -31))
+
+                .waitSeconds(0.5)
+                .addDisplacementMarker( () -> {
+                    bot.setLidPosition(lidState.open);
+                })
 
                 .build();
 
