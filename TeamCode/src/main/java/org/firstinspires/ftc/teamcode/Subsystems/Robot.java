@@ -34,7 +34,7 @@ public class Robot {
     public slowDownState slowDownState;
     public Linkage linkage;
     public linkageState linkageState;
-    public DistanceSensor distanceSensor;
+    public org.firstinspires.ftc.teamcode.Subsystems.distanceSensor distanceSensor;
 
     Telemetry telemetry;
 
@@ -51,7 +51,7 @@ public class Robot {
         activeIntake = new ActiveIntake(hardwareMap);
         lid = new Lid(hardwareMap);
         drone = new Drone(hardwareMap);
-        distanceSensor = new DistanceSensor(hardwareMap);
+     //   distanceSensor = new distanceSensor(hardwareMap);
     }
 
     // ---------------------------- IntakeSlide ---------------------------- //

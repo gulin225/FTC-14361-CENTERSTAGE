@@ -4,19 +4,19 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
 import org.firstinspires.ftc.teamcode.Commands.armExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.armState;
-import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.lidState;
 import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
-import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.trajectorysequence.TrajectorySequence;
+import org.firstinspires.ftc.teamcode.Subsystems.distanceSensor;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -38,6 +38,8 @@ public class longRedToStack extends LinearOpMode {
         //initCam(); try adding this in if doesnt work
         //line 32 may have actually been the issue pls
         drive.setPoseEstimate(startPose);
+
+
         //left ------------------------------------------------------------------
         TrajectorySequence left = drive.trajectorySequenceBuilder(startPose)
                 .lineToConstantHeading(new Vector2d(-37,-52))

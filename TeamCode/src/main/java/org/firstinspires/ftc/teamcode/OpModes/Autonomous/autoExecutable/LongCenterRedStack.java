@@ -4,6 +4,7 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
@@ -28,6 +29,7 @@ public class LongCenterRedStack extends LinearOpMode {
     String webcamName;
     Robot bot;
 
+
     public void runOpMode() {
         bot = new Robot(hardwareMap, telemetry);
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
@@ -39,25 +41,46 @@ public class LongCenterRedStack extends LinearOpMode {
 //
 //                //Push to tape
 //                //Move away from tape
-//
+
 //
 //                .build();
-        TrajectorySequence underTruss = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence centerUnderTruss = drive.trajectorySequenceBuilder(startPose)
                 .lineToConstantHeading(new Vector2d(-43,-33.5))
                 .lineToLinearHeading(new Pose2d(-39,-55, Math.toRadians(180)))
-                .addDisplacementMarker(55,() ->{
-                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
-                    bot.setWristPosition(wristState.outtaking);                })
+
               //  .lineToConstantHeading(new Vector2d(-43,-42))
               //  .lineToLinearHeading(new Pose2d(-43,-55, Math.toRadians(180)))
                // .waitSeconds(.05)
                 .lineToConstantHeading(new Vector2d(42,-55))
+                .addDisplacementMarker(55,() ->{
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                })
+
                 .build();
-        TrajectorySequence toBackboard = drive.trajectorySequenceBuilder(underTruss.end())
+        TrajectorySequence rightUnderTruss = drive.trajectorySequenceBuilder(startPose)
+                .lineToLinearHeading(new Pose2d(-36,-33,Math.toRadians(180)))
+                .lineToConstantHeading(new Vector2d(-33, -33))
+                .lineToConstantHeading(new Vector2d(-39, -55))
+
+                .lineToConstantHeading(new Vector2d(40,-55))
+                .addDisplacementMarker(55,() ->{
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                })
+                .build();
+        TrajectorySequence leftUnderTruss = drive.trajectorySequenceBuilder(startPose)
+                .lineToConstantHeading(new Vector2d(-48.25, -44))
+                .lineToLinearHeading(new Pose2d(-39,-55, Math.toRadians(180)))
+                .lineToConstantHeading(new Vector2d(40,-55))
+                .addDisplacementMarker(55,() ->{
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                })
+                .build();
+        TrajectorySequence toCenterBackboard = drive.trajectorySequenceBuilder(centerUnderTruss.end())
 //                .lineToConstantHeading(new Vector2d(-43,-42))
 //                .lineToLinearHeading(new Pose2d(-43,-55, Math.toRadians(180)))
-
-
 
 
                 .lineToConstantHeading(new Vector2d(52, -29.5))
@@ -80,6 +103,42 @@ public class LongCenterRedStack extends LinearOpMode {
 
 
                 .build();
+        TrajectorySequence toRightBackboard = drive.trajectorySequenceBuilder(rightUnderTruss.end())
+                .lineToConstantHeading(new Vector2d(52,-34))
+                .addDisplacementMarker(3,() ->{
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                    bot.outtakeSlide.setPosition(800);
+
+                })
+
+                .addDisplacementMarker( () -> {
+                    bot.setLidPosition(lidState.open);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
+
+                })
+              //  .lineToConstantHeading(new Vector2d(50,-34))
+                .lineToConstantHeading(new Vector2d(30,-55))
+                .lineToConstantHeading(new Vector2d(-45,-53))
+                .build();
+        TrajectorySequence toLeftBackboard = drive.trajectorySequenceBuilder(leftUnderTruss.end())
+                .lineToConstantHeading(new Vector2d(51.3, -22))
+                .addDisplacementMarker(3,() ->{
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                    bot.outtakeSlide.setPosition(800);
+
+                })
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.open);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
+                })
+
+               // .lineToConstantHeading(new Vector2d(47,-22))
+                .splineToConstantHeading(new Vector2d(30,-55), Math.toRadians(180))
+                .lineToConstantHeading(new Vector2d(-45,-53))
+                .build();
+
 //        TrajectorySequence leaveBackBoard = drive.trajectorySequenceBuilder(toBackboard.end())
 ////                .lineToConstantHeading(new Vector2d(-43,-42))
 ////                .lineToLinearHeading(new Pose2d(-43,-55, Math.toRadians(180)))
@@ -98,7 +157,7 @@ public class LongCenterRedStack extends LinearOpMode {
 //
 //
 //                .build();
-        TrajectorySequence toStack = drive.trajectorySequenceBuilder(toBackboard.end())
+        TrajectorySequence toStack = drive.trajectorySequenceBuilder(toCenterBackboard.end())
               //  .turn(Math.toRadians(-35))
 
 
@@ -116,9 +175,10 @@ public class LongCenterRedStack extends LinearOpMode {
 
               //  .turn(Math.toRadians(-35))
 
-                .forward(3)
-
-                .lineToLinearHeading(new Pose2d(-15,-56, Math.toRadians(180)))
+                //.forward(3)
+               // .forward(bot.distanceSensor.getFrontDistance()-.5)
+               // .strafeLeft(bot.distanceSensor.getLeftDistance()-24)
+                .lineToLinearHeading(new Pose2d(-25,-56, Math.toRadians(180)))
 
                 .addDisplacementMarker(50, () -> {
                     bot.setActiveIntakePosition(activeIntakeState.activeReverse);
@@ -134,14 +194,11 @@ public class LongCenterRedStack extends LinearOpMode {
                     bot.setLidPosition(lidState.close);
                 })
 
+
+
                 .lineToConstantHeading(new Vector2d(40,-55))
-
-
-                .build();
-        TrajectorySequence toBackboardFromTruss = drive.trajectorySequenceBuilder(toStack.end())
-
-                .lineToConstantHeading(new Vector2d(52,-37))
-                .addDisplacementMarker(3,() ->{
+                .lineToConstantHeading(new Vector2d(52,-34))
+                .addDisplacementMarker(120,() ->{
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.outtaking);
                     bot.outtakeSlide.setPosition(800);
@@ -153,11 +210,17 @@ public class LongCenterRedStack extends LinearOpMode {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
 
                 })
-                .lineToConstantHeading(new Vector2d(50,-37))
-
-
+                .lineToConstantHeading(new Vector2d(50,-34))
 
                 .build();
+//        TrajectorySequence toBackboardFromTruss = drive.trajectorySequenceBuilder(toStack.end())
+//
+//
+//
+//
+//
+//                .build();
+
 
 
         initCam();
@@ -165,13 +228,36 @@ public class LongCenterRedStack extends LinearOpMode {
         camera.stopStreaming();
         if (isStopRequested()) return;
 
-      //  drive.followTrajectorySequence(toTapeDropOff);
-       drive.followTrajectorySequence(underTruss);
-        drive.followTrajectorySequence(toBackboard);
-        //drive.followTrajectorySequence(leaveBackBoard);
-        drive.followTrajectorySequence(toStack);
-        
-        drive.followTrajectorySequence(toBackboardFromTruss);
+        switch (redDetection.getLocation())
+        {
+            case LEFT:
+                drive.setPoseEstimate(startPose);
+
+
+                drive.followTrajectorySequence(leftUnderTruss);
+                drive.followTrajectorySequence(toLeftBackboard);
+                drive.followTrajectorySequence(toStack);
+                //drive.followTrajectorySequence(toBackboardFromTruss);
+                break;
+            case RIGHT:
+                drive.setPoseEstimate(startPose);
+                drive.followTrajectorySequence(rightUnderTruss);
+                drive.followTrajectorySequence(toRightBackboard);
+                drive.followTrajectorySequence(toStack);
+               // drive.followTrajectorySequence(toBackboardFromTruss);
+
+
+                break;
+            case MIDDLE:
+                drive.setPoseEstimate(startPose);
+
+
+                drive.followTrajectorySequence(centerUnderTruss);
+                drive.followTrajectorySequence(toCenterBackboard);
+                drive.followTrajectorySequence(toStack);
+               // drive.followTrajectorySequence(toBackboardFromTruss);
+                break;
+        }
 
    //     drive.followTrajectorySequence(center);
     }
