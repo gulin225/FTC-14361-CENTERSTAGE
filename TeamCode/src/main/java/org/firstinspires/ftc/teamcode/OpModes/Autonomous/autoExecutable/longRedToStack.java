@@ -138,19 +138,19 @@ public class longRedToStack extends LinearOpMode {
                 //Move left of tape
                 .lineToConstantHeading(new Vector2d(-43,-42))
                 .lineToLinearHeading(new Pose2d(-43,-55, Math.toRadians(180)))
-                //      .setVelConstraint(SampleMecanumDrive.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL,DriveConstants.TRACK_WIDTH))
+                //.setVelConstraint(SampleMecanumDrive.getVelocityConstraint(70, DriveConstants.MAX_ANG_VEL,DriveConstants.TRACK_WIDTH))
                 .lineToLinearHeading(new Pose2d(40, -51, Math.toRadians(180)))
-                //     .splineToConstantHeading(new Vector2d(40,-56), Math.toRadians(180))
 
 
 
-               // .lineToConstantHeading(new Vector2d(40,-51))
+
+                // .lineToConstantHeading(new Vector2d(40,-51))
                 .addDisplacementMarker( () -> {
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.outtaking);
                     bot.outtakeSlide.setPosition(800);
                 })
-               // .setVelConstraint(SampleMecanumDrive.getVelocityConstraint(DriveConstants.MAX_VEL, DriveConstants.MAX_ANG_VEL,DriveConstants.TRACK_WIDTH))
+                // .setVelConstraint(SampleMecanumDrive.getVelocityConstraint(DriveConstants.MAX_VEL, DriveConstants.MAX_ANG_VEL,DriveConstants.TRACK_WIDTH))
 
                 //Lining up in front of back boardD
                 //.lineToConstantHeading(new Vector2d(47.5, -31))
@@ -161,13 +161,14 @@ public class longRedToStack extends LinearOpMode {
 //                    bot.outtakeSlide.setPosition(800);
 //                })
 //                //Lining up with back board
-                .lineToConstantHeading(new Vector2d(52, -29.5))
+                .lineToConstantHeading(new Vector2d(53, -31))
                 //Score
+                .waitSeconds(0.5)
                 .addDisplacementMarker( () -> {
                     bot.setLidPosition(lidState.open);
                 })
 
-                .lineToConstantHeading(new Vector2d(51.9, -29.5))
+
 
                 //Move slides to score
                 .addDisplacementMarker(() -> {
@@ -176,35 +177,35 @@ public class longRedToStack extends LinearOpMode {
                 .waitSeconds(.2)
                 .lineToConstantHeading(new Vector2d(30, -55))
                 .addDisplacementMarker(() -> {
-                    bot.setArmPosition(armState.init, armExtensionState.extending);
-                    bot.setWristPosition(wristState.init);
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.intaking);
                 })
                 .waitSeconds(.2)
 
                 //Move in front of back board
 
-              //  .lineToConstantHeading(new Vector2d(40, -31))
+                //  .lineToConstantHeading(new Vector2d(40, -31))
 
                 //Set to initialization position
 
-                .splineToConstantHeading(new Vector2d(-40,-53), Math.toRadians(180))
+                .splineToConstantHeading(new Vector2d(-42,-53), Math.toRadians(180))
                 .addDisplacementMarker(() -> {
                     bot.linkage.setLinkageCustomPosition(.88);
                 })
                 .turn(Math.toRadians(-35))
                 .splineToConstantHeading(new Vector2d(-57.5,-29), Math.toRadians(180))
-              //  .splineToLinearHeading(new Pose2d(-55,-30,Math.toRadians(135)), Math.toRadians(135))
+                //  .splineToLinearHeading(new Pose2d(-55,-30,Math.toRadians(135)), Math.toRadians(135))
                 .turn(Math.toRadians(35))
-                .lineToConstantHeading(new Vector2d(-57, -29))
+
                 .addDisplacementMarker(() -> {
                     bot.linkage.setLinkageCustomPosition(.96);
                     bot.setActiveIntakePosition(activeIntakeState.active);
                 })
-                .turn(Math.toRadians(35))
-                .forward(.5)
+                .turn(Math.toRadians(-35))
 
-                .waitSeconds(1)
+                .forward(3)
+
                 .lineToLinearHeading(new Pose2d(-55,-29, Math.toRadians(180)))
 
                 .build();
@@ -374,4 +375,3 @@ public class longRedToStack extends LinearOpMode {
         });
     }
 }
-
