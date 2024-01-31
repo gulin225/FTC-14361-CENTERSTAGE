@@ -80,7 +80,7 @@ public class VoltMecanum
 
     public double getBatteryMult(){
         adjustVoltMult();
-        return voltMult;
+        return voltMult * 100;
     }
 
     public double getFLSpeed(){

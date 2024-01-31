@@ -88,10 +88,11 @@ public class VoltageFieldCentric extends OpMode{
 //      telemetry.addLine("Intake Slide Encoder Tick Count " + intakeSlideCountSubstract);
 
         telemetry.addLine("Voltage Current: " + bot.voltMecanum.getBatteryVoltage());
-        telemetry.addLine("Battery Multiplier: " + bot.voltMecanum.getBatteryMult());
-        telemetry.addLine("Wheel FL: " + bot.voltMecanum.getFLSpeed() + "Wheel FR: " + bot.voltMecanum.getFRSpeed());
-        telemetry.addLine("Wheel BL: " + bot.voltMecanum.getBLSpeed() + "Wheel BR: " + bot.voltMecanum.getBRSpeed());
-
+        telemetry.addLine("Wheel Multiplier: " + bot.voltMecanum.getBatteryMult() + "%");
+        telemetry.addLine("Wheel Front Left: " + bot.voltMecanum.getFLSpeed());
+        telemetry.addLine("Wheel Back Left: " + bot.voltMecanum.getBLSpeed());
+        telemetry.addLine("Wheel Front Right: " + bot.voltMecanum.getFRSpeed());
+        telemetry.addLine("Wheel Back Right: " + bot.voltMecanum.getBRSpeed());
 
         telemetry.update();
 
