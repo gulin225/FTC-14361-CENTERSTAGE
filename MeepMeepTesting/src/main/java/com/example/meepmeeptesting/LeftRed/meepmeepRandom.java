@@ -16,62 +16,11 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
                     .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 10.5)
 
                     .followTrajectorySequence(drive ->
-                            drive.trajectorySequenceBuilder(new Pose2d(0, 0, Math.toRadians(0)))
-                                    .addDisplacementMarker(() -> {
-
-                                    })
-
-                                    //Move away from wall
-                                    .lineToConstantHeading(new Vector2d(-36, 55))
-                                    //Push to tape
-                                    .lineToConstantHeading(new Vector2d(-36, 31))
-
-                                    //Move away from tape
-                                    .lineToConstantHeading(new Vector2d(-36,35))
-
-                                    //Moving to gate
-                                    .lineToConstantHeading(new Vector2d(-44,35))
-                                    .lineToLinearHeading(new Pose2d(-49, 14, Math.toRadians(180)))
-
-                                    //Passing through gate
-                                    .lineToConstantHeading(new Vector2d(39, 14))
-                                    //Set slides, arm, and wrist to outtake position
-                                    .addDisplacementMarker( () -> {
-
-                                    })
-
-                                    //Lining up in front of back board
-                                    .splineToConstantHeading(new Vector2d(43, 39.5), Math.toRadians(300))
-                                    .lineToConstantHeading(new Vector2d(52, 39.5))
-                                    //Score
-                                    .addDisplacementMarker( () -> {
-
-                                    })
-
-
-                                    .lineToConstantHeading(new Vector2d(51.8, 39.5))
-                                    //Move slides to score
-                                    .addDisplacementMarker(() -> {
-
-                                    })
-
-
-                                    //Move behind in front of board
-                                    .splineToConstantHeading(new Vector2d(35, 10), Math.toRadians(180))
-
-                                    //Set to initialization position
-                                    .addDisplacementMarker(() -> {
-
-
-                                    })
-                                    .lineToConstantHeading(new Vector2d(-55,12 ))
-                                    .addDisplacementMarker(() -> {
-
-                                    })
-
-                                    .lineToLinearHeading(new Pose2d(-60, 9 ,Math.toRadians(225)))
-                                    .lineToLinearHeading(new Pose2d(-60, 12 ,Math.toRadians(180)))
-
+                            drive.trajectorySequenceBuilder(new Pose2d(0, -55, Math.toRadians(0)))
+                                 //   .lineToLinearHeading(new Pose2d(-43,-33.5, Math.toRadians(180)))
+                                    .splineToConstantHeading(new Vector2d(52, -29.5),Math.toRadians(180))
+//
+//                                    })
                                     .build()
                     );
 

@@ -109,9 +109,9 @@ public class longRedUnderTruss extends LinearOpMode {
                 //Move left of tape
                 .lineToConstantHeading(new Vector2d(-43,-42))
                 .lineToLinearHeading(new Pose2d(-43,-55, Math.toRadians(180)))
-          //      .setVelConstraint(SampleMecanumDrive.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL,DriveConstants.TRACK_WIDTH))
+                //      .setVelConstraint(SampleMecanumDrive.getVelocityConstraint(30, DriveConstants.MAX_ANG_VEL,DriveConstants.TRACK_WIDTH))
                 .lineToLinearHeading(new Pose2d(43, -55, Math.toRadians(180)))
-           //     .splineToConstantHeading(new Vector2d(40,-56), Math.toRadians(180))
+                //     .splineToConstantHeading(new Vector2d(40,-56), Math.toRadians(180))
 
 
 
@@ -158,7 +158,7 @@ public class longRedUnderTruss extends LinearOpMode {
 
                 .build();
 
-                //Moving to gate
+        //Moving to gate
 
 
 
