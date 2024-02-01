@@ -175,10 +175,10 @@ public class LongCenterRedStack extends LinearOpMode {
 
               //  .turn(Math.toRadians(-35))
 
-                //.forward(3)
+                .forward(3)
                // .forward(bot.distanceSensor.getFrontDistance()-.5)
                // .strafeLeft(bot.distanceSensor.getLeftDistance()-24)
-                .lineToLinearHeading(new Pose2d(-25,-56, Math.toRadians(180)))
+                .lineToLinearHeading(new Pose2d(-30,-56, Math.toRadians(180)))
 
                 .addDisplacementMarker(50, () -> {
                     bot.setActiveIntakePosition(activeIntakeState.activeReverse);
