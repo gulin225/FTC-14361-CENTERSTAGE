@@ -7,13 +7,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
 import org.firstinspires.ftc.teamcode.Commands.armExtensionState;
-import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.lidState;
 import org.firstinspires.ftc.teamcode.Commands.linkageState;
 import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.slowDownState;
-import org.firstinspires.ftc.teamcode.Commands.armExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.armState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
@@ -89,23 +87,23 @@ public class FieldCentric extends OpMode {
         driver.readButtons();
         operator.readButtons();
 
-        bot.driveTrain.drive(driver);
-        bot.driveTrain.setMotorPower();
+        bot.voltMecanum.drive(driver);
+        bot.voltMecanum.setMotorPower();
 
         // ---------------------------- DRIVER CODE ---------------------------- //
 
         if (driver.wasJustPressed(GamepadKeys.Button.START)) {
-            bot.driveTrain.resetIMU();
+            bot.voltMecanum.resetIMU();
         }
 
         if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
             bot.setSlowDownState(slowDownState.FULL);
-            bot.driveTrain.setFullPower();
+            bot.voltMecanum.setFullPower();
         }
 
         if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
             bot.setSlowDownState(slowDownState.SLOW);
-            bot.driveTrain.setSlowDownMotorPower();
+            bot.voltMecanum.setSlowDownMotorPower();
         }
 
 //        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {

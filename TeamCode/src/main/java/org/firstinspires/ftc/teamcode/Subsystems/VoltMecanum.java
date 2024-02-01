@@ -119,4 +119,10 @@ public class VoltMecanum
     {
         imu.initialize(parameters);
     }
+
+    public void setFullPower() {
+    }
+
+    public void setSlowDownMotorPower() {
+    }
 }
