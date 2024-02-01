@@ -16,7 +16,6 @@ import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.Subsystems.distanceSensor;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -166,11 +165,11 @@ public class longRedToStack extends LinearOpMode {
 
                 //  .turn(Math.toRadians(-35))
 
-                .forward(3)
+                .forward(5)
 
                 .lineToLinearHeading(new Pose2d(-15,-55, Math.toRadians(180)))
 
-                .addDisplacementMarker(230, () -> {
+                .addDisplacementMarker(240, () -> {
                     bot.setActiveIntakePosition(activeIntakeState.activeReverse);
                     bot.setArmPosition(armState.init, armExtensionState.extending);
                     bot.setWristPosition(wristState.init);
@@ -185,12 +184,12 @@ public class longRedToStack extends LinearOpMode {
                     bot.setWristPosition(wristState.outtaking);
                     bot.outtakeSlide.setPosition(800);
                 })
-                .lineToConstantHeading(new Vector2d(52,-37))
-                .addDisplacementMarker( () -> {
+                .lineToConstantHeading(new Vector2d(52,-36))
+                .addDisplacementMarker(280, () -> {
                     bot.setLidPosition(lidState.open);
                     bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
                 })
-                .lineToConstantHeading(new Vector2d(50,-37))
+                .lineToConstantHeading(new Vector2d(50,-36))
                 .build();
 
 

@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 
-public class DistanceSensor
+public class distanceSensor
 {
     com.qualcomm.robotcore.hardware.DistanceSensor distanceSensor;
 
@@ -20,7 +20,7 @@ public class DistanceSensor
     int robotFrontBackOffset = 9;
     int robotSideOffset = 8;
 
-    public  DistanceSensor(HardwareMap hardwareMap)
+    public  distanceSensor(HardwareMap hardwareMap)
     {
         //distanceSensor = hardwareMap.get(com.qualcomm.robotcore.hardware.DistanceSensor.class, "forwardDistanceSensor");
         distanceSensor = hardwareMap.get(com.qualcomm.robotcore.hardware.DistanceSensor.class, "leftDistanceSensor");
@@ -50,7 +50,7 @@ public class DistanceSensor
                 return yOffset;
             }
         }
-       return yOffset;
+        return yOffset;
     }
 
     public double getRightStackDistance()
@@ -123,4 +123,3 @@ public class DistanceSensor
         return distanceSensor.getDistance(DistanceUnit.INCH);
     }
 }
-

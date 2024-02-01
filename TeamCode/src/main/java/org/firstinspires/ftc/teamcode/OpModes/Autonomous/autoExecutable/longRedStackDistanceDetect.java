@@ -17,7 +17,6 @@ import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.wristState;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.OpModes.Autonomous.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.Subsystems.distanceSensor;
 import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
@@ -27,7 +26,6 @@ public class longRedStackDistanceDetect extends LinearOpMode {
     OpenCvCamera camera;
     HSVRedDetection redDetection;
     String webcamName;
-    org.firstinspires.ftc.teamcode.Subsystems.distanceSensor distanceSensor;
     Robot bot;
 
     public void runOpMode() {
