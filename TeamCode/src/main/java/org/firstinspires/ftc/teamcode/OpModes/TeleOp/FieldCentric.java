@@ -40,11 +40,11 @@ public class FieldCentric extends OpMode {
         telemetry.update();
 
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
-        bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+
 
 
         bot.setWristPosition(wristState.intaking);
-
+        bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
 
         bot.setLinkagePosition(linkageState.LOW);
         bot.setLidPosition(lidState.open);
@@ -110,38 +110,11 @@ public class FieldCentric extends OpMode {
             bot.driveTrain.setSlowDownMotorPower();
         }
 
-//        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
-//            if (bot.getarmState().equals(armState.intaking)) {
-//                bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
-//                bot.setIntakeSlideState(intakeSlidesState.STATION);
-//            } else {
-//                bot.setIntakeSlideState(intakeSlidesState.HIGHIN);
-//                bot.setIntakeSlidePosition(intakeSlidesState.HIGHIN, extensionState.extending);
-//            }
-//
-//        }
-//
-//        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON)) {
-//            if (bot.getarmState().equals(armState.intaking)) {
-//                bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
-//                bot.setIntakeSlideState(intakeSlidesState.STATION);
-//            } else {
-//                bot.setIntakeSlideState(intakeSlidesState.MEDIUMIN);
-//                bot.setIntakeSlidePosition(intakeSlidesState.MEDIUMIN, extensionState.extending);
-//            }
-//        }
-//////
-//        if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
-//            bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
-//            bot.setIntakeSlideState(intakeSlidesState.STATION);
-//        }
-//
         if (driver.wasJustPressed(GamepadKeys.Button.A)) {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
                 bot.setActiveIntakePosition(activeIntakeState.inactive);
                 bot.setActiveIntakeState(activeIntakeState.inactive);
-            } else if((bot.getOuttakeState().equals(outtakeSlidesState.STATION) && (bot.getArmState()).equals(armState.intaking) && (bot.getWristState()).equals(wristState.intaking)))
-            {
+            } else if ((bot.getOuttakeState().equals(outtakeSlidesState.STATION) && (bot.getArmState()).equals(armState.intaking) && (bot.getWristState()).equals(wristState.intaking))) {
                 bot.setActiveIntakePosition(activeIntakeState.active);
                 bot.setActiveIntakeState(activeIntakeState.active);
             }
@@ -157,27 +130,25 @@ public class FieldCentric extends OpMode {
             }
         }
 
-        if(driver.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON)) {
-            outtakeSlideCount += 10;
-            bot.outtakeSlide.setPosition(robotConstants.outtakeSlide.GROUNDRIGHT + outtakeSlideCount);
-        }
-
         if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
-            outtakeSlideCount -= 10;
-            bot.outtakeSlide.setPosition(robotConstants.outtakeSlide.GROUNDRIGHT + outtakeSlideCount);
+                if (bot.getLidState() != null && bot.getLidState().equals(lidState.close)) {
+                    bot.setLidPosition(lidState.open);
+                }
+                else
+                {
+                    bot.setLidPosition(lidState.close);
+                }
         }
 
         if (driver.wasJustPressed(GamepadKeys.Button.DPAD_DOWN)) {
             bot.launchDrone();
         }
-        if(driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)){
+        if (driver.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
             if (bot.getLinkageState() != null && bot.getLinkageState().equals(linkageState.HIGH)) {
                 bot.setLinkagePosition(linkageState.LOW);
-            }
-            else if (bot.getLinkageState() != null && bot.getLinkageState().equals(linkageState.LOW)) {
+            } else if (bot.getLinkageState() != null && bot.getLinkageState().equals(linkageState.LOW)) {
                 bot.setLinkagePosition(linkageState.HIGH);
-            }
-            else{
+            } else {
                 bot.setLinkagePosition(linkageState.LOW);
             }
 
@@ -186,23 +157,23 @@ public class FieldCentric extends OpMode {
         // --------------------------- OPERATOR CODE --------------------------- //
 
 
-
         if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
             if (bot.getWristState() != null && bot.getWristState().equals(wristState.intaking)) {
                 bot.setWristPosition(wristState.outtaking);
                 bot.setWristState(wristState.outtaking);
-            }
-            else if (bot.getWristState() != null && bot.getWristState().equals(wristState.init)) {
+            } else if (bot.getWristState() != null && bot.getWristState().equals(wristState.init)) {
                 bot.setWristPosition(wristState.outtaking);
                 bot.setWristState(wristState.outtaking);
             } else {
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
             }
-           // bot.wrist.setWristCustomPosition(.95);
+            // bot.wrist.setWristCustomPosition(.95);
         }
-
-
+        if (operator.wasJustPressed(GamepadKeys.Button.BACK)) {
+            bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extending);
+            bot.setOuttakeSlideState(outtakeSlidesState.HIGHOUT);
+        }
 
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)) {
             bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
@@ -210,7 +181,9 @@ public class FieldCentric extends OpMode {
 
 
         }
-
+if(operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+    bot.setLidPosition(lidState.close);
+}
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
             bot.setOuttakeSlidePosition(outtakeSlidesState.LOWMED, extensionState.extending);
             bot.setOuttakeSlideState(outtakeSlidesState.LOWMED);
@@ -263,93 +236,28 @@ public class FieldCentric extends OpMode {
             if (bot.getArmState() != null && bot.getArmState().equals(armState.intaking)) {
                 bot.setArmPosition(armState.init, armExtensionState.extending);
                 bot.setArmState(armState.init);
-               // bot.setLidPosition(lidState.close);
+                // bot.setLidPosition(lidState.close);
                 bot.setArmPosition(armState.init, armExtensionState.extending);
                 bot.setArmState(armState.init);
                 bot.setLidPosition(lidState.open);
 
             }
-
-//            bot.setWristState(wristState.init);
-//            bot.setWristPosition(wristState.init);
-
-
             bot.setArmPosition(armState.init, armExtensionState.extending);
             bot.setArmState(armState.init);
         }
 
-//        if (operator.wasJustPressed(GamepadKeys.Button.B)) {
-//            //   bot.setWristState(wristState.normal);
-//            //   bot.setWristPosition(wristState.normal);
-//
-//            if (bot.getArmState() != null && bot.getArmState().equals(armState.outtaking)) {
-//                bot.setWristState(wristState.intaking);
-//                bot.setWristPosition(wristState.intaking);
-//            }
-//
-////            bot.setWristState(wristState.init);
-////            bot.setWristPosition(wristState.init);
-//
-//            bot.setArmPosition(armState.intakeinit, armExtensionState.extending);
-//            bot.setArmState(armState.intakeinit);
-//        }
+        if (operator.getRightY() > .1) {
 
-
-
-        if(operator.getRightY()> .1){
-
-            bot.outtakeSlide.setLeftOuttakeSlidePosition((int)bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int)(operator.getRightY()*10));
-            bot.outtakeSlide.setRightouttakeSlidePosition((int)bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int)(operator.getRightY()*10));
+            bot.outtakeSlide.setLeftOuttakeSlidePosition((int) bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int) (operator.getRightY() * 10));
+            bot.outtakeSlide.setRightouttakeSlidePosition((int) bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int) (operator.getRightY() * 10));
         }
-        if(operator.getRightY()< -.1){
+        if (operator.getRightY() < -.1) {
 
-            bot.outtakeSlide.setLeftOuttakeSlidePosition((int)bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int)(operator.getRightY()*10));
-            bot.outtakeSlide.setRightouttakeSlidePosition((int)bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int)(operator.getRightY()*10));
+            bot.outtakeSlide.setLeftOuttakeSlidePosition((int) bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int) (operator.getRightY() * 10));
+            bot.outtakeSlide.setRightouttakeSlidePosition((int) bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int) (operator.getRightY() * 10));
         }
 
-
-        if(operator.wasJustPressed(GamepadKeys.Button.BACK)){
-            bot.setOuttakeSlidePosition(outtakeSlidesState.HIGHOUT, extensionState.extending);
-            bot.setOuttakeSlideState(outtakeSlidesState.HIGHOUT);
-        }
-        if(operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
-            if (bot.getLidState() != null && bot.getLidState().equals(lidState.close)) {
-                bot.setLidPosition(lidState.open);
-            }
-            else{
-                bot.setLidPosition(lidState.close);
-            }
-        }
 
 
     }
-    //        if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
-//            if (bot.getRightClawState() != null && bot.getRightClawState().equals(clawState.rightClose)) {
-//                bot.setOpenRightClawPosition();
-//                bot.setRightClawState(clawState.rightOpen);
-//            } else {
-//                bot.setCloseRightClawPosition();
-//                bot.setRightClawState(clawState.rightClose);
-//
-//            }
-//        }
-    //        if (operator.wasJustPressed(GamepadKeys.Button.LEFT_BUMPER)) {
-//            if (bot.getLeftClawState() != null && bot.getLeftClawState().equals(clawState.leftClose)) {
-//                bot.setOpenLeftClawPosition();
-//                bot.setLeftClawState(clawState.leftOpen);
-//
-//            } else {
-//                bot.setCloseLeftClawPosition();
-//                bot.setLeftClawState(clawState.leftClose);
-//            }
-//        }
-    //        if (operator.wasJustPressed(GamepadKeys.Button.LEFT_STICK_BUTTON)) {
-//            if (bot.getClawState() != null && bot.getClawState().equals(clawState.open)) {
-//
-//
-//            } else {
-//
-//
-//            }
-//        }
 }

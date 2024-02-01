@@ -11,16 +11,17 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int MOSTHIGHLEFT = 1350;
-        public static int MOSTHIGHRIGHT = 1350;
 
-        public static int HIGHLEFT = 1275;
-        public static int HIGHRIGHT = 1275;
+        public static int MOSTHIGHLEFT = 1585;
+        public static int MOSTHIGHRIGHT = 1585;
 
-        public static int MEDIUMLEFT = 1150;
-        public static int MEDIUMRIGHT = 1150;
-        public static int LOWMEDLEFT = 900;
-        public static int LOWMEDRIGHT=900;
+        public static int HIGHLEFT = 1585;
+        public static int HIGHRIGHT = 1585;
+
+        public static int MEDIUMLEFT = 1300;
+        public static int MEDIUMRIGHT = 1300;
+        public static int LOWMEDLEFT = 1000;
+        public static int LOWMEDRIGHT=1000;
 
         public static int LOWLEFT = 675;
         public static int LOWRIGHT = 675;
