@@ -85,6 +85,7 @@ public class Arm
                 leftArm.setPosition(initLeft);
                 rightArm.setPosition(initRight);
 
+
         }
     }
 
@@ -95,7 +96,7 @@ public class Arm
 
     public boolean armExtending(ServoEx arm, double target)
     {
-        double marginOfError = Math.abs(arm.getPosition() + 5 - target);
+        double marginOfError = Math.abs(arm.getPosition() + .05 - target);
 
         if(marginOfError > .05)
         {
