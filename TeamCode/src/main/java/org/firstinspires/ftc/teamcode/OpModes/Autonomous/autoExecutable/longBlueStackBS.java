@@ -110,9 +110,9 @@ public class longBlueStackBS extends LinearOpMode {
                     bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 })
 
-                .lineToConstantHeading(new Vector2d(30,56))
+                .lineToConstantHeading(new Vector2d(30,59))
 
-                .lineToConstantHeading(new Vector2d(-45,57.5))
+                .lineToConstantHeading(new Vector2d(-45,58))
 
 
                 .build();

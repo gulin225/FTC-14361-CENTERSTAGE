@@ -82,7 +82,7 @@ public class robotConstants
     {
         public static double outtaking = .365;
         public static double intaking = .78;
-        public static double init = .65;
+        public static double init = .42;
     }
     public static class Lid
     {

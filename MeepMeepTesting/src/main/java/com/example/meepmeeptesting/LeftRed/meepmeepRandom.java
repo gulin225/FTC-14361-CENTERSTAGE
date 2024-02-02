@@ -18,11 +18,9 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
                     .followTrajectorySequence(drive ->
                             drive.trajectorySequenceBuilder(new Pose2d(-40.5, -61, Math.toRadians(270)))
                                     .lineToConstantHeading(new Vector2d(-43,-33.5))
-                                    .addDisplacementMarker(1,() ->{
 
-                                    })
                                     .lineToConstantHeading(new Vector2d(-52,-37))
-                                    .splineTo(new Vector2d(-39,-9), Math.toRadians(220))
+                                    .splineTo(new Vector2d(-39,-9), Math.toRadians(300))
                                     //.lineToLinearHeading(new Pose2d(-39, -9, Math.toRadians(180)))
                                     // .lineToLinearHeading(new Pose2d(-39,-56.5, Math.toRadians(180)))
 
@@ -32,21 +30,11 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
                                     // .splineToConstantHeading(new Vector2d(42,-55), Math.toRadians(180))
 
                                     .lineToConstantHeading(new Vector2d(35,-9))
-                                    .addDisplacementMarker(55,() ->{
 
-                                    })
                                     .lineToConstantHeading(new Vector2d(52, -29.4))
-                                    .addDisplacementMarker(3, () -> {
 
 
-                                    })
-                                    .addDisplacementMarker( () -> {
 
-
-                                    })
-                                    .addDisplacementMarker( 35,() -> {
-
-                                    })
 
                                     .lineToConstantHeading(new Vector2d(30,-9))
 
@@ -117,7 +105,7 @@ import com.noahbres.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
             meepMeep.setBackground(MeepMeep.Background.FIELD_CENTERSTAGE_JUICE_DARK)
                     .setDarkMode(true)
-                    .setBackgroundAlpha(0.95f)
+                    .setBackgroundAlpha(1F)
                     .addEntity(myBot)
                     .start();
         }

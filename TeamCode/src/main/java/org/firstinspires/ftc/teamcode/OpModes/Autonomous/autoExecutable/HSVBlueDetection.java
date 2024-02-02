@@ -30,11 +30,11 @@ public class HSVBlueDetection extends OpenCvPipeline {
 
      */
     static final Rect MIDDLE_ROI = new Rect(
-            new Point(50, 145),
-            new Point(110, 185));
+            new Point(50, 170),
+            new Point(110, 210));
     static final Rect RIGHT_ROI = new Rect(
-            new Point(220, 148),
-            new Point(280, 188));
+            new Point(235, 195),
+            new Point(295, 230));
     static double PERCENT_COLOR_THRESHOLD = 0.35;
 
     public HSVBlueDetection(Telemetry t) { telemetry = t; }
