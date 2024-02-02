@@ -36,8 +36,6 @@ public class Arm
         leftArm = new SimpleServo(hardwareMap, "leftVirtualFourBar", minAngle, maxAngle, AngleUnit.DEGREES);
         rightAnalogInput = hardwareMap.get(AnalogInput.class, "rightAnalogInput");
         leftAnalogInput = hardwareMap.get(AnalogInput.class, "leftAnalogInput");
-
-
     }
 
     public void setArmPosition(armState armState, armExtensionState armExtensionState)

@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
+import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.PIDCoefficients;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Commands.activeIntakeState;
@@ -26,6 +28,8 @@ public class FieldCentric extends OpMode {
     private GamepadEx driver, operator;
     private Robot bot;
     public int outtakeSlideCount = 0;
+    public PIDController pidController;
+    double p, i, d, slidePosition;
 
     @Override
     public void init() {
@@ -42,27 +46,22 @@ public class FieldCentric extends OpMode {
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
         bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
 
-
         bot.setWristPosition(wristState.intaking);
-
 
         bot.setLinkagePosition(linkageState.LOW);
         bot.setLidPosition(lidState.open);
 
-        // bot.setIntakeSlidePosition(intakeSlidesState.STATION, extensionState.extending);
-        // bot.setIntakeSlideState(intakeSlidesState.STATION);
-
-//        
-//        
-//
-//        bot.setLeftClawState(clawState.leftClose);
-//        bot.setRightClawState(clawState.leftClose);
-
-        // bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
-
         bot.setDrone();
 
         bot.setSlowDownState(slowDownState.FULL);
+
+        p = 0;
+
+        i = 0;
+
+        d = 0;
+
+        pidController = new PIDController(p, i, d);
     }
 
     // ---------------------------- LOOPING ---------------------------- //
@@ -93,6 +92,8 @@ public class FieldCentric extends OpMode {
 
         bot.driveTrain.drive(driver);
         bot.driveTrain.setMotorPower();
+
+
 
         // ---------------------------- DRIVER CODE ---------------------------- //
 
@@ -185,8 +186,6 @@ public class FieldCentric extends OpMode {
 
         // --------------------------- OPERATOR CODE --------------------------- //
 
-
-
         if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
             if (bot.getWristState() != null && bot.getWristState().equals(wristState.intaking)) {
                 bot.setWristPosition(wristState.outtaking);
@@ -199,16 +198,15 @@ public class FieldCentric extends OpMode {
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
             }
-           // bot.wrist.setWristCustomPosition(.95);
         }
 
-
-
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_UP)) {
+            leftSlidePosition = bot.getOuttakeLeftSlidePosition();
+            rightSlidePosition = bot.getOuttakeRightSlidePosition();
+            leftPidValue = pidController.calculate(leftSlidePosition, robotConstants.outtakeSlide.MEDIUMLEFT);
+            rightPidValue = pidController.calculate(rightSlidePosition, robotConstants.outtakeSlide.MEDIUMRIGHT);
             bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
             bot.setOuttakeSlideState(outtakeSlidesState.MEDIUMOUT);
-
-
         }
 
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
