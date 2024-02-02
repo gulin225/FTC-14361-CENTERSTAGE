@@ -44,7 +44,6 @@ public class VoltageFieldCentric extends OpMode {
         bot.setArmPosition(armState.intaking, armExtensionState.extending);
 
 
-
         bot.setWristPosition(wristState.intaking);
         bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
 
@@ -63,8 +62,6 @@ public class VoltageFieldCentric extends OpMode {
         // bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
 
         bot.setDrone();
-
-        bot.setSlowDownState(slowDownState.FULL);
     }
 
     // ---------------------------- LOOPING ---------------------------- //
@@ -88,29 +85,27 @@ public class VoltageFieldCentric extends OpMode {
         telemetry.addLine("Left Arm Decimal Position: " + (1 - bot.arm.getLeftArmPosition() / 360) + " decimal.");
 //        telemetry.addLine("DIstance in CM" + bot.getDistanceSensor());
 //      telemetry.addLine("Intake Slide Encoder Tick Count " + intakeSlideCountSubstract);
+        telemetry.addLine("Voltage Current: " + bot.voltMecanum.getBatteryVoltage());
+        telemetry.addLine("Wheel Multiplier: " + bot.voltMecanum.getBatteryMult() + "%");
+        telemetry.addLine("Wheel Front Left: " + bot.voltMecanum.getFLSpeed());
+        telemetry.addLine("Wheel Back Left: " + bot.voltMecanum.getBLSpeed());
+        telemetry.addLine("Wheel Front Right: " + bot.voltMecanum.getFRSpeed());
+        telemetry.addLine("Wheel Back Right: " + bot.voltMecanum.getBRSpeed());
+
         telemetry.update();
 
         driver.readButtons();
         operator.readButtons();
 
-        bot.driveTrain.drive(driver);
-        bot.driveTrain.setMotorPower();
+        bot.voltMecanum.drive(driver);
+        bot.voltMecanum.setMotorPower();
 
         // ---------------------------- DRIVER CODE ---------------------------- //
 
         if (driver.wasJustPressed(GamepadKeys.Button.START)) {
-            bot.driveTrain.resetIMU();
+            bot.voltMecanum.resetIMU();
         }
 
-        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
-            bot.setSlowDownState(slowDownState.FULL);
-            bot.driveTrain.setFullPower();
-        }
-
-        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
-            bot.setSlowDownState(slowDownState.SLOW);
-            bot.driveTrain.setSlowDownMotorPower();
-        }
 
         if (driver.wasJustPressed(GamepadKeys.Button.A)) {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
@@ -135,9 +130,7 @@ public class VoltageFieldCentric extends OpMode {
         if (driver.wasJustPressed(GamepadKeys.Button.RIGHT_STICK_BUTTON)) {
             if (bot.getLidState() != null && bot.getLidState().equals(lidState.close)) {
                 bot.setLidPosition(lidState.open);
-            }
-            else
-            {
+            } else {
                 bot.setLidPosition(lidState.close);
             }
         }
@@ -183,7 +176,7 @@ public class VoltageFieldCentric extends OpMode {
 
 
         }
-        if(operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)){
+        if (operator.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
             bot.setLidPosition(lidState.close);
         }
         if (operator.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)) {
@@ -258,7 +251,7 @@ public class VoltageFieldCentric extends OpMode {
             bot.outtakeSlide.setLeftOuttakeSlidePosition((int) bot.outtakeSlide.getLeftOuttakeSlideMotorPosition() - (int) (operator.getRightY() * 10));
             bot.outtakeSlide.setRightouttakeSlidePosition((int) bot.outtakeSlide.getRightOuttakeSlideMotorPosition() - (int) (operator.getRightY() * 10));
         }
-        
-    }
 
+
+    }
 }

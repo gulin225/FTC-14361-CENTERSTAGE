@@ -77,7 +77,21 @@ public class VoltMecanum
         }
         return result;
     }
+    public void adjustVoltMult(){
 
+        if(getBatteryVoltage() >= 14 )
+            voltMult = 0.65;
+        else if (14 > getBatteryVoltage() && getBatteryVoltage() >= 13.75 )
+            voltMult = .70;
+        else if (13.75 > getBatteryVoltage() && getBatteryVoltage() >= 13.50 )
+            voltMult = .75;
+        else if (13.50 > getBatteryVoltage() && getBatteryVoltage() >= 13.25 )
+            voltMult = .80;
+        else if (13.25 > getBatteryVoltage() && getBatteryVoltage() >= 12.75 )
+            voltMult = .90;
+        else if (12.75 > getBatteryVoltage() && getBatteryVoltage() >= 12 )
+            voltMult = 1;
+    }
     public double getBatteryMult(){
         adjustVoltMult();
         return voltMult;
@@ -98,23 +112,6 @@ public class VoltMecanum
     public double getBRSpeed(){
         return rightRear.getVelocity();
     }
-    public void adjustVoltMult(){
-
-        if(getBatteryVoltage() >= 14 )
-            voltMult = 0.65;
-        else if (14 > getBatteryVoltage() && getBatteryVoltage() >= 13.75 )
-            voltMult = .70;
-        else if (13.75 > getBatteryVoltage() && getBatteryVoltage() >= 13.50 )
-            voltMult = .75;
-        else if (13.50 > getBatteryVoltage() && getBatteryVoltage() >= 13.25 )
-            voltMult = .80;
-        else if (13.25 > getBatteryVoltage() && getBatteryVoltage() >= 12.75 )
-            voltMult = .90;
-        else if (12.75 > getBatteryVoltage() && getBatteryVoltage() >= 12 )
-            voltMult = 1;
-    }
-
-
     public void resetIMU()
     {
         imu.initialize(parameters);

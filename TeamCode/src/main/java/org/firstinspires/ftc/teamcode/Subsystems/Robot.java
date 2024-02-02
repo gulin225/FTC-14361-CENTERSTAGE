@@ -34,6 +34,8 @@ public class Robot {
     public slowDownState slowDownState;
     public Linkage linkage;
     public linkageState linkageState;
+    // this is only diff- added VoltMecanum
+    public VoltMecanum voltMecanum;
     public org.firstinspires.ftc.teamcode.Subsystems.distanceSensor distanceSensor;
 
     Telemetry telemetry;
@@ -51,6 +53,9 @@ public class Robot {
         activeIntake = new ActiveIntake(hardwareMap);
         lid = new Lid(hardwareMap);
         drone = new Drone(hardwareMap);
+        // this is only diff- added VoltMecanum
+
+        voltMecanum = new VoltMecanum(hardwareMap);
      //   distanceSensor = new distanceSensor(hardwareMap);
     }
 
