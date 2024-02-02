@@ -54,51 +54,10 @@ public class Robot {
         distanceSensor = new DistanceSensor(hardwareMap);
     }
 
-    // ---------------------------- IntakeSlide ---------------------------- //
-
-//    public void setIntakeSlidePosition(intakeSlidesState intakeSlidesState, extensionState extensionState)
-//    {
-//        intakeSlide.setPosition(extensionState,intakeSlidesState);
-//    }
-//    public void setIntakeSlidePosition(int pos)
-//    {
-//        intakeSlide.setPosition(pos);
-//    }
-//    public intakeSlidesState getIntakeSlideState()
-//    {
-//        return intakeSlidesState;
-//    }
-//
-//    public void setIntakeSlideState(intakeSlidesState intakeSlidesState)
-//    {
-//        this.intakeSlidesState = intakeSlidesState;
-//    }
-//
-//    public double getIntakeSlidePosition()
-//    {
-//        return intakeSlide.getIntakeSlidePosition();
-//    }
-
-//    public void setExtensionState(extensionState extensionState)
-//    {
-//        this.extensionState = extensionState;
-//    }
-//
-//    public extensionState getExtensionState()
-//
-//    {
-//        return extensionState;
-//    }
-
-//    public void setInBrake()
-//    {
-//        intakeSlide.setBrakeMode();
-//    }
-
     // ---------------------------- OuttakeSlide ---------------------------- //
 
-    public void setOuttakeSlidePosition(outtakeSlidesState outtakeSlidesState, extensionState extensionState) {
-        outtakeSlide.setOuttakeSlidePosition(extensionState, outtakeSlidesState);
+    public void setOuttakeSlidePosition(outtakeSlidesState outtakeSlidesState, extensionState extensionState, double leftPidVal, double rightPidVal) {
+        outtakeSlide.setOuttakeSlidePosition(extensionState, outtakeSlidesState, leftPidVal, rightPidVal);
         this.outtakeSlidesState = outtakeSlidesState;
     }
 
@@ -159,63 +118,6 @@ public class Robot {
     public void setArmExtensionState(armExtensionState armExtensionState) {
         this.armExtensionState = armExtensionState;
     }
-
-    // ---------------------------- Claw ---------------------------- //
-
-//    public void setClawPosition(clawState clawState)
-//    {
-//        claw.setClawPosition(clawState);
-//    }
-//
-//    public void setOpenLeftClawPosition()
-//    {
-//        claw.leftOpen();
-//    }
-//
-//    public void setOpenRightClawPosition()
-//    {
-//        claw.rightOpen();
-//    }
-//
-//    public void setCloseLeftClawPosition()
-//    {
-//        claw.leftClose();
-//    }
-//
-//    public void setCloseRightClawPosition()
-//    {
-//        claw.rightClose();
-//    }
-//
-//    public void setClawState(clawState clawState)
-//    {
-//        this.clawState = clawState;
-//    }
-//
-//    public void setLeftClawState(clawState leftclawState)
-//    {
-//        this.leftclawState = leftclawState;
-//    }
-//
-//    public void setRightClawState(clawState rightclawState)
-//    {
-//        this.rightclawState = rightclawState;
-//    }
-//
-//    public clawState getClawState()
-//    {
-//        return clawState;
-//    }
-//
-//    public clawState getLeftClawState()
-//    {
-//        return leftclawState;
-//    }
-//
-//    public clawState getRightClawState()
-//    {
-//        return rightclawState;
-//    }
 
     // ---------------------------- ActiveIntake ---------------------------- //
 
