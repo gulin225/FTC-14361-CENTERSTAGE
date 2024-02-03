@@ -20,6 +20,7 @@ public class Robot {
     public Mecanum driveTrain;
     public Wrist wrist;
     public Arm arm;
+
     public Drone drone;
     public outtakeSlidesState outtakeSlidesState;
     public wristState wristState;

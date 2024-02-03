@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.lidState;
 import org.firstinspires.ftc.teamcode.Commands.linkageState;
+import org.firstinspires.ftc.teamcode.Commands.mecanumState;
 import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.slowDownState;
 import org.firstinspires.ftc.teamcode.Commands.armExtensionState;
@@ -91,7 +92,7 @@ public class FieldCentric extends OpMode {
         driver.readButtons();
         operator.readButtons();
 
-        bot.driveTrain.drive(driver);
+
         bot.driveTrain.setMotorPower();
 
         // ---------------------------- DRIVER CODE ---------------------------- //
@@ -101,13 +102,17 @@ public class FieldCentric extends OpMode {
         }
 
         if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
-            bot.setSlowDownState(slowDownState.FULL);
-            bot.driveTrain.setFullPower();
+            bot.driveTrain.angleLock(driver, 270);
+        }
+        else {
+            bot.driveTrain.drive(driver, mecanumState.NORMAL);
         }
 
         if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
-            bot.setSlowDownState(slowDownState.SLOW);
-            bot.driveTrain.setSlowDownMotorPower();
+            bot.driveTrain.angleLock(driver, 90);
+        }
+        else {
+            bot.driveTrain.drive(driver, mecanumState.NORMAL);
         }
 
         if (driver.wasJustPressed(GamepadKeys.Button.A)) {
@@ -152,6 +157,19 @@ public class FieldCentric extends OpMode {
                 bot.setLinkagePosition(linkageState.LOW);
             }
 
+        }
+        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_RIGHT)){
+            bot.setSlowDownState(slowDownState.FULL);
+            bot.driveTrain.setFullPower();
+
+        }
+        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_LEFT)){
+            bot.setSlowDownState(slowDownState.SLOW);
+            bot.driveTrain.setSlowDownMotorPower();
+
+        }
+        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
+            bot.driveTrain.drive(driver, mecanumState.NORMAL);
         }
 
         // --------------------------- OPERATOR CODE --------------------------- //

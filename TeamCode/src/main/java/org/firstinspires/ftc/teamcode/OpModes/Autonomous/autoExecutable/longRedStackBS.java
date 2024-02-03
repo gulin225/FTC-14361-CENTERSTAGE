@@ -213,17 +213,13 @@ public class longRedStackBS extends LinearOpMode {
                    // bot.setLidPosition(lidState.close);
                 })
                 .addDisplacementMarker(75, () -> {
-                    bot.setActiveIntakePosition(activeIntakeState.active);
+                    bot.setActiveIntakePosition(activeIntakeState.inactive);
                     bot.setArmPosition(armState.init, armExtensionState.extending);
                     bot.setWristPosition(wristState.init);
                     bot.setLidPosition(lidState.close);
 
                 })
-                .addDisplacementMarker(80, () -> {
-                    bot.setActiveIntakePosition(activeIntakeState.inactive);
 
-
-                })
 //                .addDisplacementMarker(80, () -> {
 //                    bot.setLidPosition(lidState.close);
 //                })
