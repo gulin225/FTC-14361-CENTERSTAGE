@@ -101,19 +101,19 @@ public class FieldCentric extends OpMode {
             bot.driveTrain.resetIMU();
         }
 
-        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
-            bot.driveTrain.angleLock(driver, 270);
-        }
-        else {
-            bot.driveTrain.drive(driver, mecanumState.NORMAL);
-        }
-
-        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
-            bot.driveTrain.angleLock(driver, 90);
-        }
-        else {
-            bot.driveTrain.drive(driver, mecanumState.NORMAL);
-        }
+//        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
+//            bot.driveTrain.angleLock(driver, 270);
+//        }
+//        else {
+//            bot.driveTrain.drive(driver, mecanumState.NORMAL);
+//        }
+//
+//        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
+//            bot.driveTrain.angleLock(driver, 90);
+//        }
+//        else {
+//            bot.driveTrain.drive(driver, mecanumState.NORMAL);
+//        }
 
         if (driver.wasJustPressed(GamepadKeys.Button.A)) {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
@@ -168,9 +168,9 @@ public class FieldCentric extends OpMode {
             bot.driveTrain.setSlowDownMotorPower();
 
         }
-        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
-            bot.driveTrain.drive(driver, mecanumState.NORMAL);
-        }
+//        if(driver.wasJustPressed(GamepadKeys.Button.DPAD_UP)){
+//            bot.driveTrain.drive(driver, mecanumState.NORMAL);
+//        }
 
         // --------------------------- OPERATOR CODE --------------------------- //
 
