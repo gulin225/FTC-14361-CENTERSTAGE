@@ -4,13 +4,6 @@ public class robotConstants
 {
     public static class outtakeSlide
     {
-        public static double P = 0.0;
-        public static double I = 0.0;
-        public static double D = 0.0;
-
-        public static double pulleyCircumference = 0.0;
-        public static double ticksPerRevolution = 0.0;
-
         public static int MOSTHIGHLEFT = 1350;
         public static int MOSTHIGHRIGHT = 1350;
 
@@ -34,10 +27,6 @@ public class robotConstants
 
     public static class intakeSlide
     {
-        public static double P = 0.5;
-        public static double I = 0.5;
-        public static double D = 0.5;
-
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
