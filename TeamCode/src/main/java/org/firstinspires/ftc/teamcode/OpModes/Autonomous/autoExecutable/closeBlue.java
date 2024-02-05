@@ -64,7 +64,7 @@ public class closeBlue extends LinearOpMode {
                 })
                 .lineToConstantHeading(new Vector2d(51.8,42.5))
                 .addDisplacementMarker( () -> {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
+                    bot.outtakeSlide.setPosition(800);
                 })
 
                 .lineToConstantHeading(new Vector2d(43, 42.5))
@@ -110,7 +110,7 @@ public class closeBlue extends LinearOpMode {
                 .waitSeconds(.25)
                 .lineToConstantHeading(new Vector2d(51.8, 35))
                 .addDisplacementMarker( () -> {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
+                    bot.outtakeSlide.setPosition(800);
                 })
                 .lineToConstantHeading(new Vector2d(43, 35))
                 .addDisplacementMarker( () -> {
@@ -125,6 +125,7 @@ public class closeBlue extends LinearOpMode {
 
         //right ------------------------------------------------------------------
         TrajectorySequence right = drive.trajectorySequenceBuilder(startPose)
+
                 .lineToConstantHeading(new Vector2d(15, 54))
 
                 .addDisplacementMarker( () -> {
@@ -160,7 +161,7 @@ public class closeBlue extends LinearOpMode {
                 })
                 .lineToConstantHeading(new Vector2d(52.8,31))
                 .addDisplacementMarker(() -> {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.LOWOUT, extensionState.extending);
+                    bot.outtakeSlide.setPosition(800);
                 })
 
                 .lineToConstantHeading(new Vector2d(43,31))
@@ -194,6 +195,7 @@ public class closeBlue extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
+                bot.setLidPosition(lidState.close);
                 
                 
                 drive.followTrajectorySequence(left);
@@ -207,6 +209,7 @@ public class closeBlue extends LinearOpMode {
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
                 bot.setWristState(wristState.intaking);
+                bot.setLidPosition(lidState.close);
                 
                 
                 drive.followTrajectorySequence(right);
@@ -219,8 +222,7 @@ public class closeBlue extends LinearOpMode {
                 bot.setArmState(armState.intaking);
                 bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 bot.setWristPosition(wristState.intaking);
-                bot.setWristState(wristState.intaking);
-                
+                bot.setWristState(wristState.intaking);                bot.setLidPosition(lidState.close);
                 
                 drive.followTrajectorySequence(center);
 

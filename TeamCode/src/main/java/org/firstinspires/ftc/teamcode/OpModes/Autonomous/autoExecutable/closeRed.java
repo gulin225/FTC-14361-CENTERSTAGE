@@ -89,7 +89,7 @@ public class closeRed extends LinearOpMode {
                     bot.setLidPosition(lidState.close);
                 })
 
-                .lineToConstantHeading(new Vector2d(17, -31.5))
+                .lineToConstantHeading(new Vector2d(17, -32.1))
 
                 .lineToConstantHeading(new Vector2d(17, -38))
                 .lineToLinearHeading(new Pose2d(40 ,-34, Math.toRadians(180)))

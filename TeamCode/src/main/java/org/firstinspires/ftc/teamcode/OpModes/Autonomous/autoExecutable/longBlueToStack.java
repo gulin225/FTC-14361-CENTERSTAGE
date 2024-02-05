@@ -75,66 +75,27 @@ public class longBlueToStack extends LinearOpMode {
                     bot.setLidPosition(lidState.open);
                 })
                 .waitSeconds(.1)
-                .lineToConstantHeading(new Vector2d(40, 39))
+                .lineToConstantHeading(new Vector2d(45, 39))
                 .addDisplacementMarker( 25, () -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setWristPosition(wristState.intaking);
                     bot.setArmPosition(armState.intaking, armExtensionState.extending);
                 })
-                .lineToConstantHeading(new Vector2d(-41, 39))
-
-
-                .build();
-        TrajectorySequence toCenterStack = drive.trajectorySequenceBuilder(toCenterBackboard.end())
-                .lineToLinearHeading(new Pose2d(-57,43,Math.toRadians(230)))
-                .addDisplacementMarker(10,  () -> {
-
-                    bot.linkage.setLinkageCustomPosition(.96);
-                    bot.setActiveIntakePosition(activeIntakeState.active);
-                })
-                .forward(5.5)
-
-                .turn(Math.toRadians(-93.5))
-                .waitSeconds(.1)
-                .forward(8)
-                .lineToLinearHeading(new Pose2d(-41,39,Math.toRadians(180)))
-
-                .build();
-        TrajectorySequence toBackboardFromStack = drive.trajectorySequenceBuilder(toCenterStack.end())
-                .lineToConstantHeading(new Vector2d(40, 39))
-                .addDisplacementMarker(5, () -> {
-                    bot.setActiveIntakePosition(activeIntakeState.inactive);
-                })
-                .addDisplacementMarker(20, () -> {
-
-                    bot.setArmPosition(armState.init, armExtensionState.extending);
-                    bot.setWristPosition(wristState.init);
-                    bot.setLidPosition(lidState.close);
-
-                })
-                .addDisplacementMarker( 55, () -> {
-                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
-                    bot.setWristPosition(wristState.outtaking);
-                })
-                .lineToConstantHeading(new Vector2d(45, 42))
-                .addDisplacementMarker(  () -> {
-                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
-                })
-                .lineToConstantHeading(new Vector2d(52, 42))
-                .addDisplacementMarker(  () -> {
-                    bot.setLidPosition(lidState.open);
-                })
-                .lineToConstantHeading(new Vector2d(46, 42))
-                .addDisplacementMarker(  () -> {
-                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                .lineToConstantHeading(new Vector2d(45, 50))
+                .lineToConstantHeading(new Vector2d(45, 58))
+                .addDisplacementMarker(() -> {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.intaking);
                 })
-                .lineToLinearHeading(new Pose2d(46,57,Math.toRadians(270)))
+                .lineToConstantHeading(new Vector2d(48, 58))
+                //Rotate to park position
+                .lineToLinearHeading(new Pose2d(50 ,58, Math.toRadians(270)))
 
-                .lineToConstantHeading(new Vector2d(52, 57))
 
                 .build();
+
+
         TrajectorySequence leftUnderTruss = drive.trajectorySequenceBuilder(startPose)
                 .addDisplacementMarker(1.5,() -> {
                     bot.setLidPosition(lidState.close);
@@ -167,21 +128,80 @@ public class longBlueToStack extends LinearOpMode {
 
                 })
                 .lineToConstantHeading(new Vector2d(45, 45))
-                .lineToConstantHeading(new Vector2d(30, 55))
+                .lineToConstantHeading(new Vector2d(45, 58))
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.intaking);
+                })
+                .lineToConstantHeading(new Vector2d(48, 58))
+                //Rotate to park position
+                .lineToLinearHeading(new Pose2d(50 ,58, Math.toRadians(270)))
                 .build();
-//        TrajectorySequence rightUnderTruss = drive.trajectorySequenceBuilder(startPose)
-//
-//                .build();
+        TrajectorySequence rightUnderTruss = drive.trajectorySequenceBuilder(startPose)
+                //Initialization
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.close);
+                })
+
+                //Move to tape
+                .lineToConstantHeading(new Vector2d(-45,50))
+                //Push to tape
+                .lineToConstantHeading(new Vector2d(-45, 42))
+                //Move away from tape
+                .lineToConstantHeading(new Vector2d(-45, 47.5))
+                //Move to center
+                .lineToConstantHeading(new Vector2d(-35,47.5))
+                .lineToConstantHeading(new Vector2d(-35,60))
+                .turn(Math.toRadians(90))
+                .lineToConstantHeading(new Vector2d(40,61))
+                .addDisplacementMarker( 55, () -> {
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                })
+
+                .build();
 //        TrajectorySequence toCenterBackboard = drive.trajectorySequenceBuilder(centerUnderTruss.end())
 //
 //                .build();
 //        TrajectorySequence toLeftBackboard = drive.trajectorySequenceBuilder(leftUnderTruss.end())
 //
 //                .build();
-//        TrajectorySequence toRightBackboard = drive.trajectorySequenceBuilder(rightUnderTruss.end())
-//
+        TrajectorySequence toRightBackboard = drive.trajectorySequenceBuilder(rightUnderTruss.end())
+                .addDisplacementMarker(() -> {
+                    bot.outtakeSlide.setPosition(700);
+                })
+                .lineToConstantHeading(new Vector2d(54,43.5))
 
-        //        .build();
+                //Score pixel
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.open);
+                })
+
+                .lineToConstantHeading(new Vector2d(53.8,43.5))
+
+                //Move slides to score
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT,extensionState.extending);
+                })
+
+                //Move behind in front of board
+                .lineToConstantHeading(new Vector2d(48,43.5))
+
+                //Set back to initialization position
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.intaking);
+                })
+
+                //Move back more
+                .lineToConstantHeading(new Vector2d(48, 55))
+                //Rotate to park position
+                .lineToLinearHeading(new Pose2d(50 ,55, Math.toRadians(270)))
+
+
+                .build();
 //
 //        TrajectorySequence toLeftStack = drive.trajectorySequenceBuilder(toCenterBackboard.end())
 //
@@ -221,11 +241,9 @@ public class longBlueToStack extends LinearOpMode {
                 break;
             case RIGHT:
                 drive.setPoseEstimate(startPose);
-                drive.followTrajectorySequence(centerUnderTruss);
-//                drive.followTrajectorySequence(toRightBackboard);
-//                drive.followTrajectorySequence(rightStack);
 
-                // drive.followTrajectorySequence(toBackboardFromTruss);
+      drive.followTrajectorySequence(rightUnderTruss);
+      drive.followTrajectorySequence(toRightBackboard);
 
 
                 break;
@@ -234,7 +252,7 @@ public class longBlueToStack extends LinearOpMode {
 
 
                 drive.followTrajectorySequence(centerUnderTruss);
-//                drive.followTrajectorySequence(toCenterBackboard);
+                drive.followTrajectorySequence(toCenterBackboard);
 //                drive.followTrajectorySequence(toCenterStack);
                 // drive.followTrajectorySequence(toBackboardFromTruss);
                 break;

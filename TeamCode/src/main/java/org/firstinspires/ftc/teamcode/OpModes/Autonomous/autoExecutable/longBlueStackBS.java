@@ -22,7 +22,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 @Autonomous(name = "longBlueStackBS", group = "goobTest")
 public class longBlueStackBS extends LinearOpMode {
     OpenCvCamera camera;
-    HSVRedDetection redDetection;
+   HSVBlueDetection blueDetection;
     String webcamName;
     Robot bot;
     double xOffset = 3;
@@ -167,9 +167,62 @@ public class longBlueStackBS extends LinearOpMode {
                     bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
                     bot.setWristPosition(wristState.intaking);
                 })
-                .lineToConstantHeading(new Vector2d(30, 61))
+                .lineToConstantHeading(new Vector2d(-41, 39))
                 .build();
-//        TrajectorySequence rightUnderTruss = drive.trajectorySequenceBuilder(startPose)
+        TrajectorySequence rightUnderTruss = drive.trajectorySequenceBuilder(startPose)
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.close);
+                })
+
+                //Move to tape
+                .lineToConstantHeading(new Vector2d(-45,50))
+                //Push to tape
+                .lineToConstantHeading(new Vector2d(-45, 42))
+                //Move away from tape
+                .lineToConstantHeading(new Vector2d(-45, 47.5))
+                .addDisplacementMarker( 55, () -> {
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                })
+                .lineToLinearHeading(new Pose2d(-39,61,Math.toRadians(180)))
+                .lineToConstantHeading(new Vector2d(35, 61))
+                .build();
+        TrajectorySequence toRightBackboard = drive.trajectorySequenceBuilder(rightUnderTruss.end())
+                .lineToConstantHeading(new Vector2d(45, 43.5))
+
+                //Set slides, arm, and wrist to outtake position
+                .addDisplacementMarker(3,() -> {
+                    bot.outtakeSlide.setPosition(800);
+                })
+
+
+                //Line up with back board
+                .lineToConstantHeading(new Vector2d(54,43.5))
+                //Score pixel
+                .addDisplacementMarker(() -> {
+                    bot.setLidPosition(lidState.open);
+                })
+
+                .lineToConstantHeading(new Vector2d(53.8,43.5))
+
+                //Move slides to score
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT,extensionState.extending);
+                })
+
+                //Move behind in front of board
+                .lineToConstantHeading(new Vector2d(48,43.5))
+
+                //Set back to initialization position
+                .addDisplacementMarker(() -> {
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.intaking);
+                })
+
+
+                .build();
+//        TrajectorySequence rightStack = drive.trajectorySequenceBuilder(toCenterBackboard.end())
 //
 //                .build();
 //        TrajectorySequence toCenterBackboard = drive.trajectorySequenceBuilder(centerUnderTruss.end())
@@ -178,21 +231,39 @@ public class longBlueStackBS extends LinearOpMode {
 //        TrajectorySequence toLeftBackboard = drive.trajectorySequenceBuilder(leftUnderTruss.end())
 //
 //                .build();
-//        TrajectorySequence toRightBackboard = drive.trajectorySequenceBuilder(rightUnderTruss.end())
-//
 
-        //        .build();
 //
-//        TrajectorySequence toLeftStack = drive.trajectorySequenceBuilder(toCenterBackboard.end())
-//
-       //         .build();
+        TrajectorySequence toBackboardFromLeftStack = drive.trajectorySequenceBuilder(toCenterBackboard.end())
+                .lineToConstantHeading(new Vector2d(-39, 61))
+                .addDisplacementMarker( 55, () -> {
+                    bot.setArmPosition(armState.outtaking, armExtensionState.extending);
+                    bot.setWristPosition(wristState.outtaking);
+                })
+                .lineToConstantHeading(new Vector2d(40, 61))
+                .lineToConstantHeading(new Vector2d(52, 45))
+
+                .addDisplacementMarker( 2, () -> {
+                    bot.outtakeSlide.setPosition(700);
+                })
+                .addDisplacementMarker(  () -> {
+                    bot.setLidPosition(lidState.open);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.MEDIUMOUT, extensionState.extending);
+
+                })
+                .lineToConstantHeading(new Vector2d(45, 45))
+                .addDisplacementMarker(  () -> {
+                    bot.setArmPosition(armState.intaking, armExtensionState.extending);
+                    bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
+                    bot.setWristPosition(wristState.intaking);
+                })
+                .lineToConstantHeading(new Vector2d(47.5, 61))
+                .build();
+
 //        TrajectorySequence toCenterStack = drive.trajectorySequenceBuilder(toCenterBackboard.end())
 //
 //
 //                .build();
-//        TrajectorySequence rightStack = drive.trajectorySequenceBuilder(toCenterBackboard.end())
 
-           //     .build();
 //        TrajectorySequence toBackboardFromTruss = drive.trajectorySequenceBuilder(toStack.end())
 //
 //
@@ -208,7 +279,7 @@ public class longBlueStackBS extends LinearOpMode {
         camera.stopStreaming();
         if (isStopRequested()) return;
 
-        switch (redDetection.getLocation())
+        switch (blueDetection.getLocation())
         {
             case LEFT:
                 drive.setPoseEstimate(startPose);
@@ -216,15 +287,15 @@ public class longBlueStackBS extends LinearOpMode {
 
                 drive.followTrajectorySequence(leftUnderTruss);
                 drive.followTrajectorySequence(toLeftBackboard);
-             //  drive.followTrajectorySequence(toCenterStack);
-             //   drive.followTrajectorySequence(toBackboardFromStack);
+               drive.followTrajectorySequence(toCenterStack);
+                drive.followTrajectorySequence(toBackboardFromLeftStack);
                 break;
             case RIGHT:
                 drive.setPoseEstimate(startPose);
-                drive.followTrajectorySequence(centerUnderTruss);
-//                drive.followTrajectorySequence(toRightBackboard);
-//                drive.followTrajectorySequence(rightStack);
-
+                drive.followTrajectorySequence(rightUnderTruss);
+                drive.followTrajectorySequence(toRightBackboard);
+                drive.followTrajectorySequence(toCenterStack);
+                drive.followTrajectorySequence(toBackboardFromLeftStack);
                 // drive.followTrajectorySequence(toBackboardFromTruss);
 
 
@@ -234,9 +305,9 @@ public class longBlueStackBS extends LinearOpMode {
 
 
                 drive.followTrajectorySequence(centerUnderTruss);
-//                drive.followTrajectorySequence(toCenterBackboard);
-//                drive.followTrajectorySequence(toCenterStack);
-                // drive.followTrajectorySequence(toBackboardFromTruss);
+                drive.followTrajectorySequence(toCenterBackboard);
+                drive.followTrajectorySequence(toCenterStack);
+                 drive.followTrajectorySequence(toBackboardFromStack);
                 break;
         }
 
@@ -255,7 +326,7 @@ public class longBlueStackBS extends LinearOpMode {
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, webcamName), cameraMonitorViewId);
 
         // initializing our Detection class (details on how it works at the top)
-        redDetection = new HSVRedDetection(telemetry);
+        blueDetection = new HSVBlueDetection(telemetry);
 
         // yeah what this does is it gets the thing which uses the thing so we can get the thing
         /*
@@ -263,7 +334,7 @@ public class longBlueStackBS extends LinearOpMode {
          we basically passthrough our detection into the camera
          and we feed the streaming camera frames into our Detection algorithm)
          */
-        camera.setPipeline(redDetection);
+        camera.setPipeline(blueDetection);
 
         /*
         this starts the camera streaming, with 2 possible combinations

@@ -188,7 +188,7 @@ public class longRedStackBS extends LinearOpMode {
 
 
                // .splineToLinearHeading(new Pose2d(-54.5,-33, Math.toRadians(145)), Math.toRadians(180))
-                .lineToLinearHeading(new Pose2d(-56,-33, Math.toRadians(130)))
+                .lineToLinearHeading(new Pose2d(-56,-31, Math.toRadians(230)))
                 .addDisplacementMarker(20,() -> {
                     bot.linkage.setLinkageCustomPosition(.96);
                     bot.setActiveIntakePosition(activeIntakeState.active);
@@ -198,7 +198,7 @@ public class longRedStackBS extends LinearOpMode {
                // .splineToConstantHeading(new Vector2d(-59,-43), Math.toRadians(180))
                 //  .splineToLinearHeading(new Pose2d(-55,-30,Math.toRadians(135)), Math.toRadians(135))
                // .waitSeconds(.1)
-                .turn(Math.toRadians(100))
+                .turn(Math.toRadians(-100))
 
               //  .turn(Math.toRadians(-35))
 
@@ -227,7 +227,7 @@ public class longRedStackBS extends LinearOpMode {
 
 
                 .lineToConstantHeading(new Vector2d(30,-55))
-                .lineToConstantHeading(new Vector2d(52.35,-34))
+                .lineToConstantHeading(new Vector2d(52.5,-34))
            //     .splineToConstantHeading(new Vector2d(51.9,-34), Math.toRadians(180))
                 .addDisplacementMarker(120,() ->{
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
@@ -257,7 +257,7 @@ public class longRedStackBS extends LinearOpMode {
 
 
                 // .splineToLinearHeading(new Pose2d(-54.5,-33, Math.toRadians(145)), Math.toRadians(180))
-                .lineToLinearHeading(new Pose2d(-56,-33, Math.toRadians(130)))
+                .lineToLinearHeading(new Pose2d(-56,-33, Math.toRadians(230)))
                 .addDisplacementMarker(20,() -> {
                     bot.linkage.setLinkageCustomPosition(.96);
                     bot.setActiveIntakePosition(activeIntakeState.active);
@@ -267,7 +267,7 @@ public class longRedStackBS extends LinearOpMode {
                 // .splineToConstantHeading(new Vector2d(-59,-43), Math.toRadians(180))
                 //  .splineToLinearHeading(new Pose2d(-55,-30,Math.toRadians(135)), Math.toRadians(135))
                 // .waitSeconds(.1)
-                .turn(Math.toRadians(100))
+                .turn(Math.toRadians(-100))
 
                 //  .turn(Math.toRadians(-35))
 
