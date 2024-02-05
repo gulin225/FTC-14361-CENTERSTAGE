@@ -58,9 +58,9 @@ public class longBlue extends LinearOpMode {
                 })
 
                 //Lining up in front of back board
-                .lineToConstantHeading(new Vector2d(40, 43))
+                .lineToConstantHeading(new Vector2d(40, 44))
                 //Line up with back board
-                .lineToConstantHeading(new Vector2d(52, 43))
+                .lineToConstantHeading(new Vector2d(52, 44))
 
 
 
@@ -124,13 +124,13 @@ public class longBlue extends LinearOpMode {
                 .addDisplacementMarker( () -> {
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.outtaking);
-                    bot.outtakeSlide.setPosition(800);
+                    bot.outtakeSlide.setPosition(700);
                 })
 
                 //Lining up in front of back board
-                .lineToConstantHeading(new Vector2d(40, 36.5))
+                .lineToConstantHeading(new Vector2d(40, 36))
                 //Lining up with back board
-                .lineToConstantHeading(new Vector2d(52, 36.5))
+                .lineToConstantHeading(new Vector2d(52, 36))
 
                 //Score
                 .addDisplacementMarker( () -> {
@@ -193,12 +193,12 @@ public class longBlue extends LinearOpMode {
                 .addDisplacementMarker(() -> {
                     bot.setArmPosition(armState.outtaking, armExtensionState.extending);
                     bot.setWristPosition(wristState.outtaking);
-                    bot.outtakeSlide.setPosition(800);
+                    bot.outtakeSlide.setPosition(700);
                 })
 
 
                 //Line up with back board
-                .lineToConstantHeading(new Vector2d(54,43.5))
+                .lineToConstantHeading(new Vector2d(54,34))
 
                 //Score pixel
                 .addDisplacementMarker(() -> {
