@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.Commands.mecanumState;
+
 import java.text.DecimalFormat;
 
 public class Mecanum
@@ -20,6 +22,7 @@ public class Mecanum
     double Kp = 0.02;
     double Ki = 0;
     double Kd = 1;
+    double output, botHeading, error;
 
 
     DecimalFormat df = new DecimalFormat("#.##");
@@ -48,19 +51,9 @@ public class Mecanum
     {
         y = gamepad1.getLeftY();
         x = gamepad1.getLeftX();
-        // double error = angleWrap(Math.toRadians(90) - imu.getAngularOrientation().firstAngle);
-        // rx = .1*(Math.toRadians(90)-imu.getAngularOrientation().firstAngle);
-        // rx = gamepad1.getRightX(); // 0.01 * (des_angle - curr_angle)
-        double error = smallestAngleDifference(90, imu.getAngularOrientation().firstAngle * (180/Math.PI));
-
-
-        timer.reset();
-        double output = (error * -Kp) + (imu.getAngularVelocity().zRotationRate * Kd) + (integralSum * Ki);
-        double rx = output;
+        rx = gamepad1.getRightX();
 
         double botHeading = -imu.getAngularOrientation().firstAngle;
-
-
 
         rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
         rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
@@ -71,6 +64,79 @@ public class Mecanum
         rightFrontPower = (rotY - rotX - rx) / denominator;
         rightRearPower = (rotY + rotX - rx) / denominator;
 
+    }
+
+    public void driveAngleLock(mecanumState mecanumState, GamepadEx gamepad1){
+        switch (mecanumState){
+            case NORMAL:
+                y = gamepad1.getLeftY();
+                x = gamepad1.getLeftX();
+                rx = gamepad1.getRightX();
+
+                botHeading = -imu.getAngularOrientation().firstAngle;
+
+                rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
+                rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
+
+                denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
+                leftFrontPower = (rotY + rotX + rx) / denominator;
+                leftRearPower = (rotY - rotX + rx) / denominator;
+                rightFrontPower = (rotY - rotX - rx) / denominator;
+                rightRearPower = (rotY + rotX - rx) / denominator;
+                break;
+            case TOREDBACKBOARD:
+                y = gamepad1.getLeftY();
+                x = gamepad1.getLeftX();
+                // double error = angleWrap(Math.toRadians(90) - imu.getAngularOrientation().firstAngle);
+                // rx = .1*(Math.toRadians(90)-imu.getAngularOrientation().firstAngle);
+                // rx = gamepad1.getRightX(); // 0.01 * (des_angle - curr_angle)
+                error = smallestAngleDifference(90, imu.getAngularOrientation().firstAngle * (180/Math.PI));
+
+
+                timer.reset();
+                output = (error * -Kp) + (imu.getAngularVelocity().zRotationRate * Kd) + (integralSum * Ki);
+                rx = output;
+
+                botHeading = -imu.getAngularOrientation().firstAngle;
+
+
+
+                rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
+                rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
+
+                denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
+                leftFrontPower = (rotY + rotX + rx) / denominator;
+                leftRearPower = (rotY - rotX + rx) / denominator;
+                rightFrontPower = (rotY - rotX - rx) / denominator;
+                rightRearPower = (rotY + rotX - rx) / denominator;
+                break;
+            case TOBLUEBACKBOARD:
+                y = gamepad1.getLeftY();
+                x = gamepad1.getLeftX();
+                // double error = angleWrap(Math.toRadians(90) - imu.getAngularOrientation().firstAngle);
+                // rx = .1*(Math.toRadians(90)-imu.getAngularOrientation().firstAngle);
+                // rx = gamepad1.getRightX(); // 0.01 * (des_angle - curr_angle)
+                error = smallestAngleDifference(270, imu.getAngularOrientation().firstAngle * (180/Math.PI));
+
+
+                timer.reset();
+                output = (error * -Kp) + (imu.getAngularVelocity().zRotationRate * Kd) + (integralSum * Ki);
+                rx = output;
+
+                botHeading = -imu.getAngularOrientation().firstAngle;
+
+
+                rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
+                rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
+
+                denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
+                leftFrontPower = (rotY + rotX + rx) / denominator;
+                leftRearPower = (rotY - rotX + rx) / denominator;
+                rightFrontPower = (rotY - rotX - rx) / denominator;
+                rightRearPower = (rotY + rotX - rx) / denominator;
+break;
+
+        }
     }
 
     public void setMotorPower()

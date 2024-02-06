@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.Commands.clawState;
 import org.firstinspires.ftc.teamcode.Commands.extensionState;
 import org.firstinspires.ftc.teamcode.Commands.lidState;
 import org.firstinspires.ftc.teamcode.Commands.linkageState;
+import org.firstinspires.ftc.teamcode.Commands.mecanumState;
 import org.firstinspires.ftc.teamcode.Commands.outtakeSlidesState;
 import org.firstinspires.ftc.teamcode.Commands.slowDownState;
 import org.firstinspires.ftc.teamcode.Commands.armExtensionState;
@@ -46,6 +47,8 @@ public class FieldCentric extends OpMode {
         bot.setWristPosition(wristState.intaking);
         bot.setOuttakeSlidePosition(outtakeSlidesState.STATION, extensionState.extending);
 
+        bot.setMecanumState(mecanumState.NORMAL);
+
         bot.setLinkagePosition(linkageState.LOW);
         bot.setLidPosition(lidState.open);
 
@@ -63,8 +66,10 @@ public class FieldCentric extends OpMode {
         bot.setDrone();
 
         bot.setSlowDownState(slowDownState.FULL);
-    }
 
+    }
+//     bot.driveTrain.drive(driver);
+//        bot.driveTrain.setMotorPower();
     // ---------------------------- LOOPING ---------------------------- //
 
     @Override
@@ -84,6 +89,8 @@ public class FieldCentric extends OpMode {
         telemetry.addLine("Right Arm Decimal Position: " + (1 - bot.arm.getRightArmPosition() / 360) + " decimal.");
         telemetry.addLine("Left Arm Position: " + bot.arm.getLeftArmPosition() + " ticks.");
         telemetry.addLine("Left Arm Decimal Position: " + (1 - bot.arm.getLeftArmPosition() / 360) + " decimal.");
+        bot.driveTrain.driveAngleLock(bot.getMecanumState(), driver);
+        bot.driveTrain.setMotorPower();
 //        telemetry.addLine("DIstance in CM" + bot.getDistanceSensor());
 //      telemetry.addLine("Intake Slide Encoder Tick Count " + intakeSlideCountSubstract);
         telemetry.update();
@@ -91,8 +98,7 @@ public class FieldCentric extends OpMode {
         driver.readButtons();
         operator.readButtons();
 
-        bot.driveTrain.drive(driver);
-        bot.driveTrain.setMotorPower();
+
 
         // ---------------------------- DRIVER CODE ---------------------------- //
 
@@ -100,15 +106,25 @@ public class FieldCentric extends OpMode {
             bot.driveTrain.resetIMU();
         }
 
+//        if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
+//            bot.setSlowDownState(slowDownState.FULL);
+//            bot.driveTrain.setFullPower();
+//        }
+//
+//        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
+//            bot.setSlowDownState(slowDownState.SLOW);
+//            bot.driveTrain.setSlowDownMotorPower();
+//        }
         if (driver.getTrigger(GamepadKeys.Trigger.LEFT_TRIGGER) > 0.1) {
-            bot.setSlowDownState(slowDownState.FULL);
-            bot.driveTrain.setFullPower();
+       bot.setMecanumState(mecanumState.TOBLUEBACKBOARD);
+        }
+      if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
+           bot.setMecanumState(mecanumState.TOREDBACKBOARD);
+        }
+        if(driver.wasJustPressed(GamepadKeys.Button.RIGHT_BUMPER)) {
+           bot.setMecanumState(mecanumState.NORMAL);
         }
 
-        if (driver.getTrigger(GamepadKeys.Trigger.RIGHT_TRIGGER) > 0.1) {
-            bot.setSlowDownState(slowDownState.SLOW);
-            bot.driveTrain.setSlowDownMotorPower();
-        }
 
         if (driver.wasJustPressed(GamepadKeys.Button.A)) {
             if (bot.getActiveIntakeState() != null && (bot.getActiveIntakeState().equals(activeIntakeState.active))) {
